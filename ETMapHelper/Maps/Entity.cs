@@ -19,13 +19,8 @@ namespace ETMapHelper.Maps
         public List<Patch> Patches { get; set; }
         public Dictionary<string, string> Props { get; set; }
 
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return $"Entity {Id} \"{Props["classname"]}\" " + ((Origin == null) ? $"({Brushes.Count} brushes)" : $"({Origin.ToString()})");
-            }
-        }
+        private string DebuggerDisplay =>
+            $"Entity {Id} \"{Props["classname"]}\" " + ((Origin == null) ? $"({Brushes.Count} brushes)" : $"({Origin.ToString()})");
 
         public Entity()
         {
@@ -60,9 +55,6 @@ namespace ETMapHelper.Maps
 
             if (Origin == null && Brushes.Count == 0)
                 throw new Exception($"Entity {Id} with no content.");
-
-
-
         }
     }
 }

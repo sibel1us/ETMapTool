@@ -15,13 +15,7 @@ namespace ETMapHelper.Maps
         public int[] Values = new int[5];
         public List<PatchComponent> Components;
 
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return $"Patch: {Id}, Cmp: {Components.Count}, Tex: {Texture}";
-            }
-        }
+        private string DebuggerDisplay => $"Patch: {Id}, Cmp: {Components.Count}, Tex: {Texture}";
 
         public Patch()
         {

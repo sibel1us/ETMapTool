@@ -17,11 +17,11 @@ namespace ETMapHelper.Maps
         public Point[] Vertex = new Point[3];
 
         public string Texture { get; set; }
-        double TextureX { get; set; }
-        double TextureY { get; set; }
-        double Rotation { get; set; }
-        double ScaleX { get; set; }
-        double ScaleY { get; set; }
+        public double TextureX { get; set; }
+        public double TextureY { get; set; }
+        public double Rotation { get; set; }
+        public double ScaleX { get; set; }
+        public double ScaleY { get; set; }
         public bool Detail { get; set; }
 
         private string DebuggerDisplay

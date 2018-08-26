@@ -74,10 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Maps\Brush.cs" />
-    <Compile Include="Maps\BrushBase.cs" />
     <Compile Include="Maps\Entity.cs" />
     <Compile Include="Maps\Face.cs" />
     <Compile Include="Maps\Map.cs" />
+    <Compile Include="Maps\MapExtensions.cs" />
     <Compile Include="Maps\Patch.cs" />
     <Compile Include="Maps\PatchComponent.cs" />
     <Compile Include="Maps\PatchPrimitive.cs" />
