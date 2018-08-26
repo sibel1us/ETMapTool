@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETMapHelper", "ETMapHelper\ETMapHelper.csproj", "{CAA8ACC0-8A30-4022-90A9-11B24495B916}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETMapHelperTests", "ETMapHelperTests\ETMapHelperTests.csproj", "{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaderTools", "ShaderTools\ShaderTools.csproj", "{A0BA0735-4C3E-439F-901D-65AAA9BB461E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BA0735-4C3E-439F-901D-65AAA9BB461E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BA0735-4C3E-439F-901D-65AAA9BB461E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BA0735-4C3E-439F-901D-65AAA9BB461E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BA0735-4C3E-439F-901D-65AAA9BB461E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1EBC6D42-3760-4F06-86CA-1C108DFAD1C3}
 	EndGlobalSection
 EndGlobal
