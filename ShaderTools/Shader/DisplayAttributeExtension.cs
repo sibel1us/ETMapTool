@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Shader
 {
+    /// <summary>
+    /// Extra attributes for surfaceparms.
+    /// </summary>
     public class SurfaceparmAttribute : Attribute
     {
         public string Name { get; set; }
-        public string Notes { get; set; } = null;
+        public string Description { get; set; } = null;
         public bool Volume { get; set; } = false;
         public bool ETJump { get; set; } = true;
         public bool Unused { get; set; } = false;
