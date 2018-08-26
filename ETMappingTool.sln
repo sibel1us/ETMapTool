@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETMapHelper", "ETMapHelper\ETMapHelper.csproj", "{CAA8ACC0-8A30-4022-90A9-11B24495B916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETMapHelperTests", "ETMapHelperTests\ETMapHelperTests.csproj", "{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAA8ACC0-8A30-4022-90A9-11B24495B916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA8ACC0-8A30-4022-90A9-11B24495B916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA8ACC0-8A30-4022-90A9-11B24495B916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA8ACC0-8A30-4022-90A9-11B24495B916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF35D7AD-8263-4581-807A-7A9CBF4CFB70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
