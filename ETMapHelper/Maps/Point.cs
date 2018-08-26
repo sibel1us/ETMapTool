@@ -28,6 +28,13 @@ namespace ETMapHelper.Maps
         /// </summary>
         public double Z { get; set; }
 
+        public static Point FromTuple(Tuple<double, double, double> tuple)
+        {
+            return new Point(tuple.Item1, tuple.Item2, tuple.Item3);
+        }
+
+        public Tuple<double, double, double> ToTuple() => Tuple.Create(X, Y, Z);
+
         /// <summary>
         /// 
         /// </summary>
@@ -59,13 +66,7 @@ namespace ETMapHelper.Maps
             return $"{Math.Round(X)} {Math.Round(Y)} {Math.Round(Z)}";
         }
 
-        public bool IsOrigin
-        {
-            get
-            {
-                return this.Equals(Point.Origin);
-            }
-        }
+        public bool IsOrigin => this.Equals(Point.Origin);
 
         /// <summary>
         /// Returns <see cref="DistanceTo(double, double, double)"/> on the entity's origin.
@@ -88,10 +89,7 @@ namespace ETMapHelper.Maps
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public double DistanceTo(Point p)
-        {
-            return DistanceTo(p.X, p.Y, p.Z);
-        }
+        public double DistanceTo(Point p) => DistanceTo(p.X, p.Y, p.Z);
 
         /// <summary>
         /// Returns the distance between this point and the parameter coordinates.
@@ -110,18 +108,23 @@ namespace ETMapHelper.Maps
 
         public override bool Equals(object obj)
         {
-            if (obj is Point)
+            if (obj is Point other)
             {
-                Point other = (Point)obj;
                 return
-                (
                     this.X == other.X &&
                     this.Y == other.Y &&
-                    this.Z == other.Z
-                );
+                    this.Z == other.Z;
             }
 
             return base.Equals(obj);
+        }
+
+        public bool Equals(Point other, double errorMargin)
+        {
+            return
+                Math.Abs(this.X - other.X) <= errorMargin &&
+                Math.Abs(this.Y - other.Y) <= errorMargin &&
+                Math.Abs(this.Z - other.Z) <= errorMargin;
         }
 
         public override int GetHashCode()

@@ -58,7 +58,7 @@ namespace ETMapHelper.Maps
             for (int i = map.Entities.Count - 1; i >= 0; --i)
             {
                 var ent = map.Entities[i];
-                if (ent.Classname.StartsWith("trigger_") || ent.Classname.StartsWith("func_"))
+                if (ent.ClassName.StartsWith("trigger_") || ent.ClassName.StartsWith("func_"))
                 {
                     if (ent.Brushes.Count == 0)
                     {
@@ -78,7 +78,7 @@ namespace ETMapHelper.Maps
 
             if (!targets.Any()) targets = null;
 
-            foreach (var entity in map.Entities.Where(ent => targets?.Contains(ent.Classname) ?? true))
+            foreach (var entity in map.Entities.Where(ent => targets?.Contains(ent.ClassName) ?? true))
             {
                 if (entity.Props.ContainsKey(key))
                 {
@@ -124,7 +124,7 @@ namespace ETMapHelper.Maps
                 {
                     foreach (var face in brush.Faces)
                     {
-                        foreach (var vertex in face.Vertex)
+                        foreach (var vertex in face.Vertex.AsArray())
                         {
                             if (vertex.X > maxX) maxX = vertex.X;
                             if (vertex.X < minX) minX = vertex.X;
@@ -142,6 +142,11 @@ namespace ETMapHelper.Maps
                 maxX + marginMaxX,
                 maxY + marginMaxY
             );
+        }
+
+        public static Point[] AsArray(this Tuple<Point, Point, Point> tuple)
+        {
+            return new Point[] { tuple.Item1, tuple.Item2, tuple.Item3 };
         }
     }
 }

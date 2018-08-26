@@ -13,10 +13,10 @@ namespace ETMapHelper.Maps
     public class Map
     {
         /// <summary>List of entities containing all the entities and brushes of the map.</summary>
-        public List<Entity> Entities;
+        public List<Entity> Entities { get; set; }
 
         /// <summary>The absolute path of the .map file, ie "C:/ET/etmain/maps/oasis.map"</summary>
-        public string FileName;
+        public string FileName { get; set; }
 
         /// <summary>Used only for debugging.</summary>
         private string DebuggerDisplay
@@ -69,7 +69,7 @@ namespace ETMapHelper.Maps
 
                         foreach (var face in ((Brush)brush).Faces)           // ( 1 2 3 ) ( -1 -2 -3 ) ...
                         {
-                            writer.WriteLine(face.GetData());               // ( 0 0 0 ) ( 2 -5 213 ) ...
+                            writer.WriteLine(face.ToString());               // ( 0 0 0 ) ( 2 -5 213 ) ...
                         }
 
                         writer.WriteLine(Tokens.CBR);                           // }
@@ -82,10 +82,10 @@ namespace ETMapHelper.Maps
                         writer.WriteLine(Tokens.PathDef2);                  // patchDef2
                         writer.WriteLine(Tokens.CBL);                       // {
                         writer.WriteLine(patch.Texture);            // common/caulk
-                        writer.WriteLine(patch.GetValues());        // ( 9 3 0 0 0 )
+                        writer.WriteLine(patch.ToString());        // ( 9 3 0 0 0 )
                         writer.WriteLine(Tokens.QL);                        // (
                         foreach (var comp in patch.Components)      // ( ( x y z ) ( x y z ) ...
-                            writer.WriteLine(comp.GetData());               // ( ( x y z ) ( x y z ) ...
+                            writer.WriteLine(comp.ToString());               // ( ( x y z ) ( x y z ) ...
                         writer.WriteLine(Tokens.QR);                        // )
                         writer.WriteLine(Tokens.CBR);                       // }
 
@@ -138,8 +138,7 @@ namespace ETMapHelper.Maps
 
                         // Create new entity object and set it as current.
                         current = nameof(Entity);
-                        entity = new Entity();
-                        entity.Id = ParseId(line);
+                        entity = new Entity(Parser.ParseId(line));
                         openingBracket = true;
                         continue;
                     }
@@ -150,7 +149,7 @@ namespace ETMapHelper.Maps
                         // End of entity. Ensure the entity has a classname, save to list and initialize again.
                         if (line.StartsWith(Tokens.CBR))
                         {
-                            if (entity.Classname == null)
+                            if (entity.ClassName == null)
                                 throw new ParseException($"Trying to add entity {entity.Id} without classname on line {lines}.");
 
                             Entities.Add(entity);
@@ -162,7 +161,8 @@ namespace ETMapHelper.Maps
                         // Key/Value pair.
                         if (line.StartsWith(Tokens.Quote))
                         {
-                            ParseProps(line, entity);
+                            var kvp = Parser.ParseKeyValuePair(line);
+                            entity.Props.Add(kvp.Key, kvp.Value);
                             continue;
                         }
 
@@ -170,8 +170,7 @@ namespace ETMapHelper.Maps
                         if (line.StartsWith(Tokens.Brush))
                         {
                             current = "BrushOrPatch";
-                            brush = new Brush();
-                            brush.Id = ParseId(line);
+                            brush = new Brush(Parser.ParseId(line));
                             openingBracket = true;
                             continue;
                         }
@@ -187,8 +186,7 @@ namespace ETMapHelper.Maps
                         if (line.StartsWith(Tokens.PathDef2))
                         {
                             current = nameof(Patch);
-                            patch = new Patch();
-                            patch.Id = brush.Id;
+                            patch = new Patch(brush.Id);
                             brush = null;
                             openingBracket = true;
                             patchState = 1;
@@ -218,7 +216,7 @@ namespace ETMapHelper.Maps
                         // Brush face definition, starts with (.
                         if (line.StartsWith(Tokens.QL))
                         {
-                            ParseFace(line, brush);
+                            brush.Faces.Add(Parser.ParseFace(line));
                             continue;
                         }
 
@@ -233,7 +231,7 @@ namespace ETMapHelper.Maps
                         // After patchDef2 and the opening bracket
                         if (patchState == 1)
                         {
-                            ParsePatchTexture(line, patch);
+                            patch.Texture = line.Trim();
                             patchState = 2;
                             continue;
                         }
@@ -267,7 +265,7 @@ namespace ETMapHelper.Maps
 
                             if (line.StartsWith(Tokens.QL))
                             {
-                                ParsePatchComponent(line, patch);
+                                patch.Components.Add(Parser.ParsePatchComponent(line));
                                 continue;
                             }
                         }
@@ -297,78 +295,6 @@ namespace ETMapHelper.Maps
         }
 
         /// <summary>
-        /// Parses an entity key/value pair.
-        /// </summary>
-        /// <param name="line">Example: "classname" "worldspawn"</param>
-        /// <param name="entity">Target entity.</param>
-        public void ParseProps(string line, Entity entity)
-        {
-            if (entity == null)
-                throw new ParseException($"Trying to add properties onto a null entity.");
-
-            string key = "";
-            string value = "";
-            var stringArray = line.ToLower().Split(new[] { '"' }, StringSplitOptions.RemoveEmptyEntries);
-
-            bool findingKey = true;
-
-            foreach (var child in stringArray)
-            {
-                if (child.Trim().Length == 0) continue;
-
-                if (findingKey)
-                {
-                    key = child.Trim();
-                    findingKey = false;
-                    continue;
-                }
-
-                value = child.Trim();
-                break;
-            }
-
-            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(value))
-                throw new ParseException($"Entity key/value pair \"{key}\" \"{value}\" contains empty fields.");
-
-            if (key.Equals(Tokens.classname))
-                entity.Classname = key;
-            else
-                entity.Props.Add(key, value);
-        }
-
-        /// <summary>
-        /// Parses a single brush face.
-        /// </summary>
-        /// <param name="line">Example: "( 0 0 0 ) ( 1 1 1 ) ( 2 2 2 ) common/caulk 0 0 0 0.5 0.5 0 4 0"</param>
-        /// <param name="brush">Brush to save the face to.</param>
-        public void ParseFace(string line, Brush brush)
-        {
-            Face face = new Face(line);
-            brush.Faces.Add(face);
-        }
-
-        /// <summary>
-        /// Parses a line containing a column of patch vertexes.
-        /// </summary>
-        /// <param name="line">Example: "( ( -368 372 0 0 6 ) ( -368 372 112 0 3 ) ( -368 372 224 0 0 ) )"</param>
-        /// <param name="patch">Patch to save the component to.</param>
-        public void ParsePatchComponent(string line, Patch patch)
-        {
-            var component = new PatchComponent(line);
-            patch.Components.Add(component);
-        }
-
-        /// <summary>
-        /// Saves the texture name from the line onto a patch.
-        /// </summary>
-        /// <param name="line">Example: "common/caulk"</param>
-        /// <param name="patch">Patch to save the texture to.</param>
-        public void ParsePatchTexture(string line, Patch patch)
-        {
-            patch.ParseTexture(line);
-        }
-
-        /// <summary>
         /// Parses the line after patch definition containing it's values.
         /// </summary>
         /// <param name="line">Example: "( 9 3 0 0 0 )"</param>
@@ -395,36 +321,5 @@ namespace ETMapHelper.Maps
                 }
             }
         }
-
-        /// <summary>
-        /// Parses Entity or Brush id from a line.
-        /// </summary>
-        /// <param name="line">Example: "// entity 3"</param>
-        /// <returns>Parsed id</returns>
-        public int ParseId(string line)
-        {
-            if (line.StartsWith(Tokens.Entity))
-            {
-                try
-                {
-                    return int.Parse(line.Substring(Tokens.Entity.Length).Trim());
-                }
-                catch
-                {
-                    throw new ParseException($"Couldn't parse entity id from line \"{line}\"");
-                }
-            }
-
-            try
-            {
-                return int.Parse(line.Substring(Tokens.Brush.Length).Trim());
-            }
-            catch
-            {
-                throw new ParseException($"Couldn't parse brush id from line \"{line}\"");
-            }
-        }
-
-
     }
 }

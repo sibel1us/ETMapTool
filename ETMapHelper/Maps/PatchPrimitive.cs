@@ -9,11 +9,11 @@ namespace ETMapHelper.Maps
 {
     public class PatchPrimitive
     {
-        public double X;
-        public double Y;
-        public double Z;
-        public double Value1;
-        public double Value2;
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
+        public double Value1 { get; set; }
+        public double Value2 { get; set; }
 
         public PatchPrimitive()
         {
@@ -29,8 +29,7 @@ namespace ETMapHelper.Maps
             Value2 = val2;
         }
 
-        // TODO: what is this function naming?
-        public string GetData()
+        public override string ToString()
         {
             return $"( {Get(X)} {Get(Y)} {Get(Z)} {Get(Value1)} {Get(Value2)} )";
         }

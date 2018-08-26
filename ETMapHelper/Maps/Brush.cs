@@ -16,8 +16,9 @@ namespace ETMapHelper.Maps
         public int Id { get; set; }
         public List<Face> Faces { get; set; }
 
-        public Brush()
+        public Brush(int id)
         {
+            Id = id;
             Faces = new List<Face>();
         }
 

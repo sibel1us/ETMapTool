@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Vertex = System.Tuple<ETMapHelper.Maps.Point, ETMapHelper.Maps.Point, ETMapHelper.Maps.Point>;
 
 namespace ETMapHelper.Maps
 {
@@ -14,7 +15,9 @@ namespace ETMapHelper.Maps
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class Face
     {
-        public Point[] Vertex = new Point[3];
+        private string DebuggerDisplay => $"Face: {Texture}";
+
+        public Vertex Vertex;
 
         public string Texture { get; set; }
         public double TextureX { get; set; }
@@ -24,88 +27,19 @@ namespace ETMapHelper.Maps
         public double ScaleY { get; set; }
         public bool Detail { get; set; }
 
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return $"Face: {Texture}";
-            }
-        }
-
-
-        public Face()
-        {
-            
-        }
-
-        public Face(string line)
-        {
-            var split = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            Vertex[0] = new Point();
-            Vertex[1] = new Point();
-            Vertex[2] = new Point();
-
-            for (int i = 0; i < split.Length; i++)
-            {
-                switch (i)
-                {
-                    default:
-                        break;
-                    case 1:
-                        Vertex[0].X = ParseDecimal(split[i]); break;
-                    case 2:
-                        Vertex[0].Y = ParseDecimal(split[i]); break;
-                    case 3:
-                        Vertex[0].Z = ParseDecimal(split[i]); break;
-                    case 6:
-                        Vertex[1].X = ParseDecimal(split[i]); break;
-                    case 7:
-                        Vertex[1].Y = ParseDecimal(split[i]); break;
-                    case 8:
-                        Vertex[1].Z = ParseDecimal(split[i]); break;
-                    case 11:
-                        Vertex[2].X = ParseDecimal(split[i]); break;
-                    case 12:
-                        Vertex[2].Y = ParseDecimal(split[i]); break;
-                    case 13:
-                        Vertex[2].Z = ParseDecimal(split[i]); break;
-                    case 15:
-                        Texture = split[i].Trim(); break;
-                    case 16:
-                        TextureX = ParseDecimal(split[i]); break;
-                    case 17:
-                        TextureY = ParseDecimal(split[i]); break;
-                    case 18:
-                        Rotation = ParseDecimal(split[i]); break;
-                    case 19:
-                        ScaleX = ParseDecimal(split[i]); break;
-                    case 20:
-                        ScaleY = ParseDecimal(split[i]); break;
-                    case 21:
-                        Detail = (ParseDecimal(split[i]) == 134217728); break;
-                }
-            }
-        }
-
-        public double ParseDecimal(string input)
-        {
-            return double.Parse(input, CultureInfo.InvariantCulture);
-        }
-
-        public string GetData()
+        public override string ToString()
         {
             return $"{GetPoints()} {GetTex()} {GetTail()}";
         }
 
         public string GetPoints()
         {
-            return $"{GetPoint(0)} {GetPoint(1)} {GetPoint(2)}";
+            return $"{GetPoint(Vertex.Item1)} {GetPoint(Vertex.Item2)} {GetPoint(Vertex.Item3)}";
         }
 
-        public string GetPoint(int i)
+        public string GetPoint(Point point)
         {
-            return $"( {Get(Vertex[i].X)} {Get(Vertex[i].Y)} {Get(Vertex[i].Z)} )";
+            return $"( {Get(point.X)} {Get(point.Y)} {Get(point.Z)} )";
         }
 
         public string GetTex()

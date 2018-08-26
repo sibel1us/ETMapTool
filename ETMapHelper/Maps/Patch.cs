@@ -17,19 +17,15 @@ namespace ETMapHelper.Maps
 
         private string DebuggerDisplay => $"Patch: {Id}, Cmp: {Components.Count}, Tex: {Texture}";
 
-        public Patch()
+        public Patch(int id)
         {
+            Id = id;
             Components = new List<PatchComponent>();
         }
 
-        public string GetValues()
+        public override string ToString()
         {
             return $"( {Values[0]} {Values[1]} {Values[2]} {Values[3]} {Values[4]} )";
-        }
-
-        public void ParseTexture(string data)
-        {
-            Texture = data.Trim();
         }
     }
 }
