@@ -8,9 +8,10 @@ using System.Diagnostics;
 namespace ETMapHelper.Maps
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Patch : BrushBase
+    public class Patch
     {
-        public string Texture = null;
+        public int Id { get; set; }
+        public string Texture { get; set; }
         public int[] Values = new int[5];
         public List<PatchComponent> Components;
 
@@ -25,16 +26,6 @@ namespace ETMapHelper.Maps
         public Patch()
         {
             Components = new List<PatchComponent>();
-        }
-
-        public override bool IsDetail()
-        {
-            return false;
-        }
-
-        public override bool IsPatch()
-        {
-            return true;
         }
 
         public string GetValues()

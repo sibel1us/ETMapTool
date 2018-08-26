@@ -9,14 +9,17 @@ using System.Diagnostics;
 namespace ETMapHelper.Maps
 {
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
-    public class Brush : BrushBase
+    public class Brush
     {
-        public List<Face> Faces;
+        public int Id { get; set; }
+        public List<Face> Faces { get; set; }
+
         public Point Center
         {
             get
             {
-                if (Faces.Count == 0) return null;
+                if (Faces.Count == 0)
+                    throw new ArgumentException("Brush with no faces", nameof(this.Faces));
 
                 int i = 0;
                 double x = 0.0;
@@ -46,7 +49,7 @@ namespace ETMapHelper.Maps
             }
         }
 
-        public bool OnlySingleTexture(string texture)
+        public bool HasOnlyTexture(string texture)
         {
             foreach (var face in Faces)
             {
@@ -60,41 +63,15 @@ namespace ETMapHelper.Maps
             Faces = new List<Face>();
         }
 
-        public void Add(Face face)
-        {
-            Faces.Add(face);
-        }
-
         /// <summary>
-        /// Even if only a single Face is detail, whole brush is considered detail by radiant.
+        /// GtkRadiant considers brushes as Detail if even a single face is Detail.
         /// </summary>
-        public bool Detail()
+        public bool Detail
         {
-            foreach (var face in Faces)
-                if (face.Detail) return true;
-
-            return false;
-        }
-
-        public void Write(StreamWriter writer)
-        {
-            if (Faces.Count < 4)
-                throw new Exception($"Error: brush {Id} has only {Faces.Count} faces!");
-
-            writer.WriteLine($"// brush {Id}");
-            writer.WriteLine("{");
-            foreach (var face in Faces) writer.WriteLine(face.GetData());
-            writer.WriteLine("}");
-        }
-
-        public override bool IsPatch()
-        {
-            return false;
-        }
-
-        public override bool IsDetail()
-        {
-            return Detail();
+            get
+            {
+                return Faces.Any(f => f.Detail);
+            }
         }
     }
 }

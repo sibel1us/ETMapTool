@@ -48,6 +48,7 @@ namespace ETMapHelper.Maps
             }
         }
 
+        // TODO: move parsers away from objects
         public double ParseDecimal(string input)
         {
             return double.Parse(input, CultureInfo.InvariantCulture);

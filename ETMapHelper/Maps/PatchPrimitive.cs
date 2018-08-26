@@ -29,6 +29,7 @@ namespace ETMapHelper.Maps
             Value2 = val2;
         }
 
+        // TODO: what is this function naming?
         public string GetData()
         {
             return $"( {Get(X)} {Get(Y)} {Get(Z)} {Get(Value1)} {Get(Value2)} )";

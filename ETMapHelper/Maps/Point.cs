@@ -8,10 +8,32 @@ namespace ETMapHelper.Maps
 {
     public class Point
     {
+        /// <summary>
+        /// Point at 0,0,0
+        /// </summary>
+        public static readonly Point Origin = new Point(0, 0, 0);
+
+        /// <summary>
+        /// 
+        /// </summary>
         public double X { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public double Y { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public double Z { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
         public Point(double x, double y, double z)
         {
             X = x;
@@ -19,6 +41,9 @@ namespace ETMapHelper.Maps
             Z = z;
         }
 
+        /// <summary>
+        /// Initialize 
+        /// </summary>
         public Point()
         {
             X = Y = Z = 0;
@@ -34,22 +59,47 @@ namespace ETMapHelper.Maps
             return $"{Math.Round(X)} {Math.Round(Y)} {Math.Round(Z)}";
         }
 
-        public bool IsOrigin()
+        public bool IsOrigin
         {
-            return X == 0 && Y == 0 && Z == 0;
+            get
+            {
+                return this.Equals(Point.Origin);
+            }
         }
 
-        public double DistanceTo(Entity e)
+        /// <summary>
+        /// Returns <see cref="DistanceTo(double, double, double)"/> on the entity's origin.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public double DistanceTo(Entity entity)
         {
-            if (e.Origin == null) return -1;
-            return DistanceTo(e.Origin);
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            if (entity.Origin == null)
+                throw new ArgumentNullException(nameof(entity.Origin));
+
+            return DistanceTo(entity.Origin);
         }
 
+        /// <summary>
+        /// Returns <see cref="DistanceTo(double, double, double)"/> on point.
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public double DistanceTo(Point p)
         {
             return DistanceTo(p.X, p.Y, p.Z);
         }
 
+        /// <summary>
+        /// Returns the distance between this point and the parameter coordinates.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
         public double DistanceTo(double x, double y, double z)
         {
             return Math.Sqrt(
@@ -58,10 +108,25 @@ namespace ETMapHelper.Maps
                 Math.Pow((Z - z), 2));
         }
 
-        public double DistanceToOrigin()
+        public override bool Equals(object obj)
         {
-            if (IsOrigin()) return 0;
-            return DistanceTo(0, 0, 0);
+            if (obj is Point)
+            {
+                Point other = (Point)obj;
+                return
+                (
+                    this.X == other.X &&
+                    this.Y == other.Y &&
+                    this.Z == other.Z
+                );
+            }
+
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

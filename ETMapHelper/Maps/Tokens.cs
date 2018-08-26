@@ -10,7 +10,7 @@ namespace ETMapHelper.Maps
     {
         public const string Entity = "// entity ";
         public const string Brush = "// brush ";
-        public const string Patch = "patchDef2";
+        public const string PathDef2 = "patchDef2";
         public const string CBL = "{";
         public const string CBR = "}";
         public const string Quote = "\"";
@@ -20,5 +20,7 @@ namespace ETMapHelper.Maps
         public const string Comment = "//";
         public const string Origin = "origin";
         public const string Model = "model";
+
+        public static readonly char[] Space = { ' ' };
     }
 }

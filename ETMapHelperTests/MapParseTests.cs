@@ -7,52 +7,9 @@ namespace ETMapHelperTests
     [TestClass]
     public class MapParseTests
     {
+        // Everything commented out until some good test maps get sorted
+        /*
         [TestMethod]
-        public void MyTestMethod()
-        {
-            for (int i = 1; i < 26; i++)
-            {
-                string[] asd =
-                {
-                    $"trigger found_{i}",
-                    "{",
-                    "\twait 50",
-                    $"\twm_announce \"^wSecret button found^f! (^w{i}^f/^w25^f)\"",
-                    "}",
-                    ""
-                };
-
-                System.IO.File.AppendAllLines("E:/zzz.script", asd);
-
-            }
-
-        }
-
-                /*    for (int i = 1; i< 26; i++)
-            {
-                string number = i.ToString();
-                if (i< 10) number = "0" + number;
-
-                string[] lines =
-                {
-                    "s_" + number,
-                    "{",
-                    "\tactivate",
-                    "\t{",
-                    "\t\ttrigger syringe_counter syringe_found",
-                   $"\t\tsetstate s_{number} invisible",
-                   $"\t\tremapshader textures/aeon/z_syringe_{number} textures/aeon/z_syringe_found",
-                    "\t\tremapshaderflush",
-                    "\t}",
-                    "}",
-                    "",
-
-                };
-
-        System.IO.File.AppendAllLines("E:/zzz.script", lines);
-            }*/
-
-    [TestMethod]
         public void ParseMap()
         {
             var path = "E:/ET/map/ET/etmain/maps/floodlit.map";
@@ -168,5 +125,7 @@ namespace ETMapHelperTests
             Assert.AreEqual(map.ParseId(second), 3432);
             Assert.AreEqual(map.ParseId(third), 1322);
         }
+
+    */
     }
 }

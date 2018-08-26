@@ -8,6 +8,9 @@ using System.Diagnostics;
 
 namespace ETMapHelper.Maps
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class Face
     {
@@ -35,9 +38,9 @@ namespace ETMapHelper.Maps
             
         }
 
-        public Face(string data)
+        public Face(string line)
         {
-            var split = data.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var split = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             Vertex[0] = new Point();
             Vertex[1] = new Point();
@@ -110,10 +113,15 @@ namespace ETMapHelper.Maps
             return $"{Texture} {Get(TextureX)} {Get(TextureY)} {Get(Rotation)} {Get(ScaleX, true)} {Get(ScaleY, true)}";
         }
 
+        /// <summary>
+        /// Gets the last 3 numbers in the line.
+        /// </summary>
+        /// <returns></returns>
         public string GetTail()
         {
-            if (Detail) return "134217728 0 0";
-            else return "0 4 0";
+            return (this.Detail)
+                    ? "134217728 0 0"
+                    : "0 4 0";
         }
 
         private string Get(double value, bool decimals = false)

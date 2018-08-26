@@ -12,10 +12,12 @@ namespace ETMapHelper.Maps
     [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class Entity
     {
-        public int Id;
-        public Point Origin = null;
-        public List<BrushBase> Brushes;
-        public Dictionary<string, string> Props;
+        public int Id { get; set; }
+        public string Classname { get; set; }
+        public Point Origin { get; set; }
+        public List<Brush> Brushes { get; set; }
+        public List<Patch> Patches { get; set; }
+        public Dictionary<string, string> Props { get; set; }
 
         private string DebuggerDisplay
         {
@@ -28,39 +30,14 @@ namespace ETMapHelper.Maps
         public Entity()
         {
             Origin = null;
-            Brushes = new List<BrushBase>();
+            Brushes = new List<Brush>();
+            Patches = new List<Patch>();
             Props = new Dictionary<string, string>();
         }
 
-        public void AddBrush(BrushBase brush)
+        public Point ParseOrigin(string input)
         {
-            Brushes.Add(brush);
-        }
-
-        public void ChangeSpawnFlags()
-        {
-
-        }
-
-        public void AddProperty(string key, string value)
-        {
-            if (value == null)
-            {
-                if (!Props.ContainsKey(key))
-                    throw new MissingPropertyException($"Trying to fetch missing key {key} from entity {Id}.");
-            }
-
-            // TODO: crash or just give warning?
-            //if (Props.ContainsKey(key)) throw new ParseException($"Trying to add duplicate key {key} to entity {entity.Id}.");
-
-            Props.Add(key, value);
-
-            if (key == Tokens.Origin) Origin = ParseOrigin(value);
-        }
-
-        public Point ParseOrigin(string data)
-        {
-            var split = data.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var split = input.Split(Tokens.Space, StringSplitOptions.RemoveEmptyEntries);
 
             try
             {
@@ -72,27 +49,8 @@ namespace ETMapHelper.Maps
             }
             catch
             {
-                throw new MissingPropertyException($"Trying to parse broken origin \"{data}\".");
+                throw new MissingPropertyException($"Trying to parse broken origin \"{input}\".");
             }
-        }
-
-
-        public string Classname(string value = null)
-        {
-            if (value == null)
-            {
-                if (Props.ContainsKey(Tokens.classname))
-                {
-                    if (!string.IsNullOrEmpty(Props[Tokens.classname]))
-                        return Props[Tokens.classname];
-                }
-                throw new MissingPropertyException($"Entity {Id} with no classname.");
-            }
-
-            if (!Props.ContainsKey(Tokens.classname)) Props.Add(Tokens.classname, value);
-            else Props[Tokens.classname] = value;
-
-            return value;
         }
 
         public void Write(StreamWriter writer)
