@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ETMapHelper.Exceptions;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Diagnostics;
-using ETMapHelper.Exceptions;
 
 namespace ETMapHelper.Maps
 {
@@ -57,42 +57,44 @@ namespace ETMapHelper.Maps
             {
                 foreach (var entity in Entities)
                 {
-                    writer.WriteLine(Tokens.Entity + entity.Id);                //  // entity id
-                    writer.WriteLine(Tokens.CBL);                               //  {
-                    foreach (var key in entity.Props.Keys)                      //  "classname" "worldspawn"
-                        writer.WriteLine($"\"{key}\" \"{entity.Props[key]}\""); //  "_minlight" "8"
+                    writer.WriteLine(Tokens.Entity + entity.Id);            // entity id
+                    writer.WriteLine(Tokens.CBL);                           //  {
+                    foreach (var kvp in entity.Props)                       //  "classname" "worldspawn"
+                        writer.WriteLine($"\"{kvp.Key}\" \"{kvp.Value}\""); //  "_minlight" "8"
 
                     foreach (var brush in entity.Brushes)
                     {
-                        writer.WriteLine(Tokens.Brush + brush.Id);               //  // brush id
-                        writer.WriteLine(Tokens.CBL);                           //  {
+                        writer.WriteLine(Tokens.Brush + brush.Id);          //  // brush id
+                        writer.WriteLine(Tokens.CBL);                       //  {
 
-                        foreach (var face in ((Brush)brush).Faces)           // ( 1 2 3 ) ( -1 -2 -3 ) ...
+                        foreach (var face in brush.Faces)                   // ( 1 2 3 ) ( -1 -2 -3 ) ...
                         {
-                            writer.WriteLine(face.ToString());               // ( 0 0 0 ) ( 2 -5 213 ) ...
+                            writer.WriteLine(face.ToString());              // ( 0 0 0 ) ( 2 -5 213 ) ...
                         }
 
-                        writer.WriteLine(Tokens.CBR);                           // }
+                        writer.WriteLine(Tokens.CBR);                       // }
+                        writer.WriteLine(Environment.NewLine);
                     }
                     foreach (var patch in entity.Patches)
                     {
-                        writer.WriteLine(Tokens.Brush + patch.Id);               //  // brush id
-                        writer.WriteLine(Tokens.CBL);                           //  {
+                        writer.WriteLine(Tokens.Brush + patch.Id);          //  // brush id
+                        writer.WriteLine(Tokens.CBL);                       //  {
 
                         writer.WriteLine(Tokens.PathDef2);                  // patchDef2
                         writer.WriteLine(Tokens.CBL);                       // {
-                        writer.WriteLine(patch.Texture);            // common/caulk
-                        writer.WriteLine(patch.ToString());        // ( 9 3 0 0 0 )
+                        writer.WriteLine(patch.Texture);                    // common/caulk
+                        writer.WriteLine(patch.ValuesToString());           // ( 9 3 0 0 0 )
                         writer.WriteLine(Tokens.QL);                        // (
-                        foreach (var comp in patch.Components)      // ( ( x y z ) ( x y z ) ...
-                            writer.WriteLine(comp.ToString());               // ( ( x y z ) ( x y z ) ...
+                        foreach (var comp in patch.Components)              // ( ( x y z ) ( x y z ) ...
+                            writer.WriteLine(comp.ToString());              // ( ( x y z ) ( x y z ) ...
                         writer.WriteLine(Tokens.QR);                        // )
                         writer.WriteLine(Tokens.CBR);                       // }
 
-                        writer.WriteLine(Tokens.CBR);                           // }
-
+                        writer.WriteLine(Tokens.CBR);                       // }
+                        writer.WriteLine(Environment.NewLine);
                     }
-                    writer.WriteLine(Tokens.CBR);                               // }
+                    writer.WriteLine(Tokens.CBR);                           // }
+                    writer.WriteLine(Environment.NewLine);
                 }
             }
         }

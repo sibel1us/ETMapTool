@@ -17,8 +17,7 @@ namespace ETMapHelper.Maps
     {
         private string DebuggerDisplay => $"Face: {Texture}";
 
-        public Vertex Vertex;
-
+        public Vertex Vertex { get; set; }
         public string Texture { get; set; }
         public double TextureX { get; set; }
         public double TextureY { get; set; }
