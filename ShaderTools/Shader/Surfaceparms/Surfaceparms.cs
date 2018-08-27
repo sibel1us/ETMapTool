@@ -6,10 +6,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader
+namespace ShaderTools.Shader.Surfaceparm
 {
     public static class SurfaceparmHelper
     {
+        public static List<Surfaceparms> Members { get; }
+            = ((Surfaceparms[])Enum.GetValues(typeof(Surfaceparms))).ToList();
+
         /// <summary>
         /// 
         /// </summary>
@@ -97,19 +100,19 @@ namespace ShaderTools.Shader
         origin,
 
         [Display(Name = "Trans", Description = "Compiler ignores these surfaces when compiling vis, also doesn't eat up contained brushes.")]
-        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.VisCompile)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.AffectsVis)]
         trans,
 
         [Display(Name = "Detail", Description = "Compiler ignores brushes that have this surfaceparm when compiling vis.")]
-        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.VisCompile)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.AffectsVis)]
         detail,
 
         [Display(Name = "Structural", Description = "Compiler takes into account brushes that have this surfaceparm when compiling vis.")]
-        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.VisCompile)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.AffectsVis)]
         structural,
 
         [Display(Name = "Area Portal", Description = "Use to split vis portals in the map (inside doors for example).")]
-        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.VisCompile)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid | SurfparmFlags.AffectsVis)]
         areaportal,
 
         [Display(Name = "No Save", Description = "Allows/Disallows save inside this volume depending on 'nosave'-worldspawn key.")]
@@ -133,15 +136,15 @@ namespace ShaderTools.Shader
         sky,
 
         [Display(Name = "Light Filter", Description = "Light is filtered using this surface's color and alpha channels. Slows down light compile a lot.")]
-        [Surfaceparm(SurfparmFlags.LightCompile)]
+        [Surfaceparm(SurfparmFlags.AffectsLight)]
         lightfilter,
 
         [Display(Name = "Alpha-shadow", Description = "Light is filtered using this surface's alpha channel. Slows down light compile.")]
-        [Surfaceparm(SurfparmFlags.LightCompile)]
+        [Surfaceparm(SurfparmFlags.AffectsLight)]
         alphashadow,
 
         [Display(Name = "Hint", Description = "Compiler splits all vis portals across this surface's global plane.")]
-        [Surfaceparm(SurfparmFlags.VisCompile | SurfparmFlags.Avoid, Related = skip)]
+        [Surfaceparm(SurfparmFlags.AffectsVis | SurfparmFlags.Avoid, Related = skip)]
         hint,
 
         [Display(Name = "Skip", Description = "Compiler skips these surfaces completely.")]
@@ -167,42 +170,42 @@ namespace ShaderTools.Shader
         [Surfaceparm(SurfparmFlags.Avoid)]
         monsterslick,
 
-        [Display(Name = "Glass")]
+        [Display(Name = "Glass", Description = "Changes bullet sounds when hitting this surface.")]
         glass,
 
-        [Display(Name = "No Footsteps")]
+        [Display(Name = "No Footsteps", Description = "No footsteps play on this surface.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         nosteps,
 
-        [Display(Name = "Splash Steps")]
+        [Display(Name = "Splash Steps", Description = "Treated as splashy water for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         splash,
 
-        [Display(Name = "Metal steps")]
+        [Display(Name = "Metal steps", Description = "Treated as a metal material for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         metalsteps,
 
-        [Display(Name = "Wood Steps")]
+        [Display(Name = "Wood Steps", Description = "Treated as a wooden material for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         woodsteps,
 
-        [Display(Name = "Grass Steps")]
+        [Display(Name = "Grass Steps", Description = "Treated as a grassy ground for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         grasssteps,
 
-        [Display(Name = "Gravel Steps")]
+        [Display(Name = "Gravel Steps", Description = "Treated as gravel for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         gravelsteps,
 
-        [Display(Name = "Carpet Steps")]
+        [Display(Name = "Carpet Steps", Description = "Treated as soft carpet for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         carpetsteps,
 
-        [Display(Name = "Snow Steps")]
+        [Display(Name = "Snow Steps", Description = "Treated as snow for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         snowsteps,
 
-        [Display(Name = "Roof Steps")]
+        [Display(Name = "Roof Steps", Description = "Treated as a tin metal roof for footsteps and bullet impacts.")]
         [Surfaceparm(SurfparmFlags.Footsteps)]
         roofsteps,
 
@@ -214,15 +217,15 @@ namespace ShaderTools.Shader
         nodraw,
 
         [Display(Name = "No Pointlight")]
-        [Surfaceparm(SurfparmFlags.LightCompile)]
+        [Surfaceparm(SurfparmFlags.AffectsLight)]
         pointlight,
 
         [Display(Name = "No Lightmap", Description = "Compiler ignores these surfaces when compiling lightmaps.")]
-        [Surfaceparm(SurfparmFlags.LightCompile)]
+        [Surfaceparm(SurfparmFlags.AffectsLight)]
         nolightmap,
 
         [Display(Name = "No Dynamic Light")]
-        [Surfaceparm(SurfparmFlags.LightCompile)]
+        [Surfaceparm(SurfparmFlags.AffectsLight)]
         nodlight,
 
         [Display(Name = "No Jump Delay", Description = "Enables/Disables jump delay on this surface depending on 'nojumpdelay'-worldspawn key.")]
