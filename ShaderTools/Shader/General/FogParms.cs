@@ -11,8 +11,11 @@ namespace ShaderTools.Shader.General
     {
         public RGBColor Color { get; set; }
 
-        [Display(Name = "Blue")]
-        [Range(0, 1, ErrorMessage = "Only values between 0 and 1 are valid")]
+        /// <summary>
+        /// Distance to opaque.
+        /// </summary>
+        [Display(Name = "Opacity", Description = "Distance (in units) to opaque.")]
+        [Range(0, double.MaxValue, ErrorMessage = "Must be positive.")]
         public double Opacity { get; set; }
     }
 }
