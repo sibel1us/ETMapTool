@@ -15,7 +15,7 @@ namespace ShaderTools.Shader.General
         /// Distance to opaque.
         /// </summary>
         [Display(Name = "Opacity", Description = "Distance (in units) to opaque.")]
-        [Range(0, double.MaxValue, ErrorMessage = "Must be positive.")]
-        public double Opacity { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Must be positive.")]
+        public int Opacity { get; set; }
     }
 }

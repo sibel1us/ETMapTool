@@ -35,6 +35,17 @@ namespace ShaderTools.Shader
             Blue = blue;
         }
 
+        /// <summary>
+        /// "( R G B )" or "R G B", depending on "<paramref name="wrapToParentheses"/>".
+        /// </summary>
+        /// <returns></returns>
+        public string ToString(bool wrapToParentheses)
+        {
+            string retVal = $"{Writer.Format(Red)} {Writer.Format(Green)} {Writer.Format(Blue)}";
+            if (wrapToParentheses) return $"( {retVal} )";
+            return retVal;
+        }
+
         public static RGBColor NonNormalized(int red, int green, int blue)
         {
             if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red));

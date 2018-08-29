@@ -1,33 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace ShaderTools.Shader.General
 {
     public class GeneralDirectives
     {
-        public SkyParms Skyparms { get; set; }
-        public FogParms Forparms { get; set; }
+        [Display(Name = "No PicMip", Description = "Removes picmip's effect on textures (blurring). Use on signs and such that should always stay legible.")]
+        public bool NoPicmip { get; set; }
 
-        public bool NoPicmip { get; set; } = false;
-        public bool NoMipmaps { get; set; } = false;
-        public bool Portal { get; set; } = false;
-        public bool PolygonOffset { get; set; } = false;
+        [Display(Name = "No MipMaps", Description = "Always renders a high quality texture, even at longer distances.")]
+        public bool NoMipmap { get; set; }
 
+        [Display(Name = "Portal", Description = "")]
+        public bool Portal { get; set; } // TODO: identical to sort portal
+
+        [Display(Name = "Polygon Offset", Description = "Renders this texture slightly off the surface it's placed. Use on decals in conjunction with correct sort-value.")]
+        public bool PolygonOffset { get; set; }
+
+        [Display(Name = "Texture Culling", Description = "Affects which side on the brush the texture is rendered (outside, inside, both)")]
         public Cull Cull { get; set; }
+
+        [Display(Name = "Texture Sorting", Description = "Affects the order the textures are drawn.")]
         public SortValue Sort { get; set; }
 
-        //TODO: deformVertexes
+        [Display(Name = "Sky Parameters", Description = "Marks this as a sky shader, and affects how the skybox is drawn.")]
+        public SkyParms Skyparms { get; set; }
+
+        [Display(Name = "Fog Parameters", Description = "Marks this as a fog shader, and affects how the fog is drawn.")]
+        public FogParms Fogparms { get; set; }
+
+        [Display(Name = "Deform Vertexes", Description = "")]
+        public DeformVertexes Deformvertexes { get; set; }
+
+        public GeneralDirectives()
+        {
+            // Init booleans
+            NoPicmip = false;
+            NoMipmap = false;
+            Portal = false;
+            PolygonOffset = false;
+
+            Cull = default(Cull); // Cull.back
+                                  // TODO: sort
+
+            // Init objects
+            Skyparms = null;
+            Fogparms = null;
+            Deformvertexes = null;
+        }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum Cull
     {
+        [Display(Name = "Back", Description = "Default value, texture is only rendered on the outside.")]
         back = 0,
+
+        [Display(Name = "Front", Description = "Inverted, texture is rendered on the inside only.")]
         front,
+
+        [Display(Name = "None/Disable", Description = "Texture is rendered on both sides, useful for grates, water, energy fields, etc.")]
         none,
+
+        // TODO
         disable = none
     }
 
