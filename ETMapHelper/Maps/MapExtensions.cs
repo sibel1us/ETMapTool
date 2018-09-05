@@ -10,6 +10,13 @@ namespace ETMapHelper.Maps
 {
     public static class MapExtensions
     {
+        private static bool Equal(string first, string second)
+        {
+            if (first == null || second == null) return false;
+            if (first.Length != second.Length) return false;
+            return first.IndexOf(second, StringComparison.OrdinalIgnoreCase) != -1;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -37,7 +44,36 @@ namespace ETMapHelper.Maps
                 }
             }
 
-            return 0;
+            return deletedCount;
+        }
+
+        public static int ScaleLightValues(this Map map, double multiplier, bool includeJuniors = false)
+        {
+            if (multiplier < 0)
+                throw new ArgumentOutOfRangeException(nameof(multiplier), "Negative light value is not allowed");
+
+            int changedCount = 0;
+
+            var lightEntities = map.Entities
+                                   .Where(e => Equal(e.ClassName, "light"))
+                                   .Where(e => !includeJuniors || Equal(e.ClassName, "lightJunior"));
+
+            foreach (var ent in lightEntities)
+            {
+                if (!ent.Props.ContainsKey("light"))
+                    continue;
+
+                if (!int.TryParse(ent.Props["light"], out int lightVal))
+                    continue;
+
+                int newVal = (int)(lightVal * multiplier);
+
+                ent.Props["light"] = newVal.ToString();
+
+                changedCount++;
+            }
+
+            return changedCount;
         }
 
         /// <summary>

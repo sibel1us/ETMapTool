@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ETMapHelper.Maps;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,6 +8,25 @@ namespace ETMapHelperTests
     [TestClass]
     public class MapParseTests
     {
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            var path = "E:/ET/map/ET/etmain/maps/fuelrun.map";
+            var map = new Map(path);
+
+            foreach (var ent in map.Entities.Where(e => e.ClassName == "light"))
+            {
+                int lightVal = int.Parse(ent.Props["light"]);
+                int newVal = ((int)(lightVal * 0.66));
+
+                System.Diagnostics.Debug.WriteLine($"Changed entity {ent.Id} light from {lightVal} to {newVal}");
+
+                ent.Props["light"] = newVal.ToString();
+            }
+
+            map.WriteToFile(path);
+        }
+
         // Everything commented out until some good test maps get sorted
         /*
         [TestMethod]

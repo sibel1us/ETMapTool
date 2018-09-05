@@ -9,6 +9,8 @@ namespace ETMapHelper.Maps
 {
     public class PatchPrimitive
     {
+        private readonly NumberFormatInfo nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
+
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
@@ -36,8 +38,6 @@ namespace ETMapHelper.Maps
 
         private string Get(double value, bool decimals = false)
         {
-            NumberFormatInfo nfi = new NumberFormatInfo();
-            nfi.NumberDecimalSeparator = ".";
             if (decimals || value % 1 != 0) return $"{value.ToString("0.000000", nfi)}";
             return $"{value.ToString(nfi)}";
         }
