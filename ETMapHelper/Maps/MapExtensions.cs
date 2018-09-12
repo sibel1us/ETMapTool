@@ -47,6 +47,13 @@ namespace ETMapHelper.Maps
             return deletedCount;
         }
 
+        /// <summary>
+        /// Scales the intensity of all light entities in the map.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="multiplier"></param>
+        /// <param name="includeJuniors"></param>
+        /// <returns></returns>
         public static int ScaleLightValues(this Map map, double multiplier, bool includeJuniors = false)
         {
             if (multiplier < 0)
@@ -86,7 +93,7 @@ namespace ETMapHelper.Maps
 
             /*
             var toBeDeleted = from entity in map.Entities
-                              where entity.Classname().StartsWith("trigger_") || entity.Classname().StartsWith("trigger_")
+                              where entity.Classname().StartsWith("trigger_") || entity.Classname().StartsWith("func_")
                               where !entity.Brushes.Any()
                               select entity;
             */
