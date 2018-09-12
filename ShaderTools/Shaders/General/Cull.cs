@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Shaders.General
 {
-    [Format(Token.cull)]
+    [Format(Token.cull, "face")]
     [ClassDisplay(Name = "Cull", Description = "Determines which sides of the surface are rendered.")]
     public class Cull : IGeneralDirective
     {

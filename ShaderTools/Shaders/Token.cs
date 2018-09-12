@@ -35,20 +35,29 @@ namespace ShaderTools.Shaders
         /// </summary>
         public const string q3map = "q3map_";
 
+        public const string polygonOffset = "polygonOffset";
+        public const string lightgridAmbientMultiplier = "lightgridmulamb";
+        public const string lightgridDirectionalMultiplier = "lightgridmuldir";
+        public const string entityMergable = "entityMergable";
+        public const string portal = "portal";
         public const string surfaceparm = "surfaceparm";
         public const string deformVertexes = "deformVertexes";
+        public const string nofog = "nofog";
         public const string cull = "cull";
         public const string distancecull = "distancecull";
+        public const string nocompress = "nocompress";
+        public const string allowcompress = "allowcompress";
         public const string skyparms = "skyparms";
+        public const string sunshader = "sunshader";
         public const string fogparms = "fogparms";
+        public const string fogvars = "fogvars";
+        public const string skyfogvars = "skyfogvars";
+        public const string waterfogvars = "waterfogvars";
 
         /// <summary>implicitMap is recognized by ET any "implicit_" except "Mask" and "Blend". Case sensitive.</summary>
         public const string @implicit = "implicit";
-        /// <summary>Case sensitive.</summary>
         public const string implicitMap = "implicitMap";
-        /// <summary>Case sensitive.</summary>
         public const string implicitMask = "implicitMask";
-        /// <summary>Case sensitive.</summary>
         public const string implicitBlend = "implicitBlend";
         #endregion General Directives
 

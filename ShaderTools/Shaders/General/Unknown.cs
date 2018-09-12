@@ -9,11 +9,11 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     /// Represents a line in .shader-file that doesn't correspond to any known general directive.
     /// </summary>
-    class UnknownGeneralDirective : IGeneralDirective
+    class Unknown : IGeneralDirective
     {
         public string Value { get; set; }
 
-        public UnknownGeneralDirective(string line)
+        public Unknown(string line)
         {
             Value = line;
         }

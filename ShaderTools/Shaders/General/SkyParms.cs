@@ -1,4 +1,5 @@
-﻿using ShaderTools.Shaders.Stages;
+﻿using ShaderTools.Shaders.Attributes;
+using ShaderTools.Shaders.Stages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Shaders.General
 {
+    [ClassDisplay(Name = "Skybox Parameters", Description = "")]
+    [Format(Token.skyparms, "cloud height", "outerbox", "innerbox")]
     public class SkyParms : IGeneralDirective
     {
         public Image Farbox { get; set; }

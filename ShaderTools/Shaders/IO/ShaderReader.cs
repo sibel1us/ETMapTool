@@ -1,6 +1,5 @@
 ﻿using ShaderTools.Shaders;
 using ShaderTools.Shaders.Exceptions;
-using ShaderTools.Shaders.General;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -220,7 +219,7 @@ namespace ShaderTools.Shaders.IO
                     }
                     else
                     {
-                        IGeneralDirective parsed = ParseGeneralDirective();
+                        General.IGeneralDirective parsed = ParseGeneralDirective();
 
                         if (parsed != null)
                         {
@@ -277,12 +276,12 @@ namespace ShaderTools.Shaders.IO
         /// Parses general, editor, q3map, and other directives such as skyparms, fogparms and surfaceparms.
         /// </summary>
         /// <returns></returns>
-        private IGeneralDirective ParseGeneralDirective()
+        private General.IGeneralDirective ParseGeneralDirective()
         {
             // Parse editor directives
             if (LineStartsWith(Token.qer))
             {
-                IEditorDirective parsed = ParseEditorDirective();
+                var parsed = ParseEditorDirective();
 
                 if (parsed == null)
                 {
@@ -301,9 +300,9 @@ namespace ShaderTools.Shaders.IO
             // Parse cull
             if (LineStartsWith(Token.cull))
             {
-                if (Enum.TryParse(GetValue(Token.cull), out CullValue result))
+                if (Enum.TryParse(GetValue(Token.cull), out General.CullValue result))
                 {
-                    return new Cull(result);
+                    return new General.Cull(result);
                 }
                 else
                 { 
@@ -328,26 +327,26 @@ namespace ShaderTools.Shaders.IO
 
             // Can't recognize directive - return error
             Logger.Warn($"Unrecognized general directive '{CurrentLine}'", Index, Path);
-            return new UnknownGeneralDirective(CurrentLine);
+            return new General.Unknown(CurrentLine);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="ed"></param>
-        private IEditorDirective ParseEditorDirective()
+        private General.Editor.IEditorDirective ParseEditorDirective()
         {
             // Parse editor image
             if (LineStartsWith(Token.qer_editorimage))
             {
-                return new EditorImage(); // TODO: texture path parser
+                return new General.Editor.EditorImage(); // TODO: texture path parser
             }
 
             // Parse nocarve-property
             if (LineStartsWith(Token.qer_nocarve))
             {
                 //Logger.Warn($"Duplicate {Token.qer_nocarve}-property in shader.", Index, Path);
-                return new EditorNoCarve();
+                return new General.Editor.NoCarve();
             }
 
             // Parse qer_transparency
@@ -358,7 +357,7 @@ namespace ShaderTools.Shaders.IO
                 if (parsed < 0 || parsed > 1)
                     Logger.Info($"Property {Token.qer_trans} should be between 0 and 1.", Index, Path);
 
-                return new EditorTransparency();
+                return new General.Editor.Transparency();
             }
 
             // Invalid qer_-property

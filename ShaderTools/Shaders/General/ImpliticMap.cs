@@ -23,7 +23,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     ///
     /// </summary>
-    [Format(Token.implicitMap)]
+    [Format(Token.implicitMap, "texture")]
     public class ImplicitMap : IImplicitMap
     {
         // TODO: what to do with this?
@@ -41,7 +41,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     /// 
     /// </summary>
-    [Format(Token.implicitBlend)]
+    [Format(Token.implicitBlend, "texture")]
     public class ImplicitBlend : IImplicitMap
     {
         /// <summary>
@@ -53,7 +53,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     /// 
     /// </summary>
-    [Format(Token.implicitMap)]
+    [Format(Token.implicitMap, "texture")]
     public class ImplicitMask : IImplicitMap
     {
         /// <summary>
