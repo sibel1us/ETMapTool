@@ -49,6 +49,7 @@
     <Compile Include="Shaders\General\NoPicMip.cs" />
     <Compile Include="Shaders\General\Sort.cs" />
     <Compile Include="Shaders\General\UnknownGeneralDirective.cs" />
+    <Compile Include="Shaders\Attributes\FormatAttribute.cs" />
     <Compile Include="Shaders\Helpers\SurfaceparmHelper.cs" />
     <Compile Include="Shaders\IO\ShaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,10 +64,10 @@
     <Compile Include="Shaders\General\FogParms.cs" />
     <Compile Include="Shaders\General\IGeneralDirective.cs" />
     <Compile Include="Shaders\General\SkyParms.cs" />
-    <Compile Include="Shaders\Helpers\ClassDisplayAttribute.cs" />
+    <Compile Include="Shaders\Attributes\ClassDisplayAttribute.cs" />
     <Compile Include="Shaders\Logger.cs" />
     <Compile Include="Shaders\RGBColor.cs" />
-    <Compile Include="Shaders\Helpers\SurfaceparmAttribute.cs" />
+    <Compile Include="Shaders\Attributes\SurfaceparmAttribute.cs" />
     <Compile Include="Shaders\Shader.cs" />
     <Compile Include="Shaders\Surfaceparms.cs" />
     <Compile Include="Shaders\Textures\AnimMap.cs" />

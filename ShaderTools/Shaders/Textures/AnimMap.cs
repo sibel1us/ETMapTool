@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using ShaderTools.Shaders.Helpers;
+using ShaderTools.Shaders.Attributes;
 
 namespace ShaderTools.Shaders.Stages
 {

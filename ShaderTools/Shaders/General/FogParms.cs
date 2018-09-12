@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShaderTools.Shaders.Attributes;
+using ShaderTools.Shaders.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Shaders.General
 {
+    [Format(Token.fogparms, "fog color", "distance to opaque")]
     public class FogParms : IGeneralDirective
     {
         /// <summary>

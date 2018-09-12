@@ -1,4 +1,6 @@
-﻿using ShaderTools.Shaders.Stages;
+﻿using ShaderTools.Shaders.Attributes;
+using ShaderTools.Shaders.Helpers;
+using ShaderTools.Shaders.Stages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     ///
     /// </summary>
+    [Format(Token.implicitMap)]
     public class ImplicitMap : IImplicitMap
     {
         // TODO: what to do with this?
@@ -38,6 +41,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     /// 
     /// </summary>
+    [Format(Token.implicitBlend)]
     public class ImplicitBlend : IImplicitMap
     {
         /// <summary>
@@ -49,6 +53,7 @@ namespace ShaderTools.Shaders.General
     /// <summary>
     /// 
     /// </summary>
+    [Format(Token.implicitMap)]
     public class ImplicitMask : IImplicitMap
     {
         /// <summary>

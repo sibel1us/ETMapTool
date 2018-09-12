@@ -1,4 +1,5 @@
-﻿using ShaderTools.Shaders.Helpers;
+﻿using ShaderTools.Shaders.Attributes;
+using ShaderTools.Shaders.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Shaders.General
 {
+    [Format(Token.cull)]
     [ClassDisplay(Name = "Cull", Description = "Determines which sides of the surface are rendered.")]
     public class Cull : IGeneralDirective
     {

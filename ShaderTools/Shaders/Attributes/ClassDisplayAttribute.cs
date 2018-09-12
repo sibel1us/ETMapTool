@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Helpers
+namespace ShaderTools.Shaders.Attributes
 {
     // SOURCE: so /a/42722321
     [AttributeUsage(AttributeTargets.Class)]

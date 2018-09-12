@@ -22,7 +22,7 @@ namespace ShaderTools.Shaders
         #endregion General Shader Elements
 
         #region General Directives
-        /// <summary>
+        /// <summary>:p
         /// Used for parsing exclusively.
         /// </summary>
         public const string qer = "qer_";

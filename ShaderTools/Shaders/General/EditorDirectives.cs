@@ -1,4 +1,5 @@
-﻿using ShaderTools.Shaders.Helpers;
+﻿using ShaderTools.Shaders.Attributes;
+using ShaderTools.Shaders.Helpers;
 using ShaderTools.Shaders.Stages;
 using System;
 using System.Collections.Generic;
