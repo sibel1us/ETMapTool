@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShaderTools.Shaders.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,12 +7,30 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader.Surfaceparm
+namespace ShaderTools.Shaders.Surfaceparm
 {
     public static class SurfaceparmHelper
     {
-        public static List<Surfaceparms> Members { get; }
-            = ((Surfaceparms[])Enum.GetValues(typeof(Surfaceparms))).ToList();
+        /// <summary>
+        /// Returns all <see cref="Surfaceparms"/>.
+        /// </summary>
+        public static List<Surfaceparms> Members => ((Surfaceparms[])Enum.GetValues(typeof(Surfaceparms))).ToList();
+
+        /// <summary>
+        /// Returns a list of surfaceparms that are useless when used on volume shaders.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Surfaceparms> UselessWithVolume()
+        {
+            var list =  new List<Surfaceparms>
+            {
+                Surfaceparms.slick,
+                Surfaceparms.nodamage,
+            };
+
+            list.AddRange(Members.Where(sp => GetFlags(sp).HasFlag(SurfparmFlags.Footsteps)));
+            return list;
+        }
 
         /// <summary>
         /// 
@@ -30,53 +49,44 @@ namespace ShaderTools.Shader.Surfaceparm
         /// </summary>
         /// <param name="surfaceparm"></param>
         /// <returns></returns>
-        public static string GetName(Surfaceparms surfaceparm)
-        {
-            return SurfaceparmHelper.GetDisplayAttributes(surfaceparm).Name;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="surfaceparm"></param>
-        /// <returns></returns>
-        public static string GetDescription(Surfaceparms surfaceparm)
-        {
-            return SurfaceparmHelper.GetDisplayAttributes(surfaceparm).Description;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="surfaceparm"></param>
-        /// <returns></returns>
-        public static SurfparmFlags Flags(Surfaceparms surfaceparm)
+        public static SurfaceparmAttribute GetSurfaceparmAttributes(Surfaceparms surfaceparm)
         {
             var memInfo = typeof(Surfaceparms).GetMember(surfaceparm.ToString());
             var attributes = memInfo[0].GetCustomAttributes(typeof(SurfaceparmAttribute), false);
-            return ((SurfaceparmAttribute)attributes[0]).Flags;
+            return (SurfaceparmAttribute)attributes[0];
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="surfaceparm"></param>
+        /// <returns></returns>
+        public static SurfparmFlags GetFlags(Surfaceparms surfaceparm)
+        {
+            return SurfaceparmHelper.GetSurfaceparmAttributes(surfaceparm).Flags;
+        }
+
     }
 
+    /// <summary>
+    /// Definitions for surfaceparm-values.
+    /// </summary>
     public enum Surfaceparms
     {
-        [Display(Name = "NULL")]
-        NULL = 0,
-
         [Display(Name = "Missile Clip", Description = "Clip that blocks missile weapons (grenades, panzer, etc.).")]
-        [Surfaceparm(Related = playerclip)]
+        [Surfaceparm()]
         clipmissile,
 
         [Display(Name = "Water", Description = "Liquid.")]
-        [Surfaceparm(SurfparmFlags.Volume, Related = slag)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Liquid)]
         water,
 
         [Display(Name = "Slag", Description = "Liquid with lower acceleration than 'water'.")]
-        [Surfaceparm(SurfparmFlags.Volume, Related = water)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Liquid)]
         slag,
 
         [Display(Name = "Lava", Description = "TODO")]
-        [Surfaceparm(SurfparmFlags.Volume, Related = water)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Liquid)]
         lava,
 
         [Display(Name = "Clip", Description = "Basic clip, blocks player movement but not projectiles.")]
@@ -96,7 +106,7 @@ namespace ShaderTools.Shader.Surfaceparm
         nonsolid,
 
         [Display(Name = "Origin", Description = "Used with brush based entities.")]
-        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.Avoid)]
+        [Surfaceparm(SurfparmFlags.Volume | SurfparmFlags.DoNotUse)]
         origin,
 
         [Display(Name = "Trans", Description = "Compiler ignores these surfaces when compiling vis, also doesn't eat up contained brushes.")]
@@ -144,11 +154,11 @@ namespace ShaderTools.Shader.Surfaceparm
         alphashadow,
 
         [Display(Name = "Hint", Description = "Compiler splits all vis portals across this surface's global plane.")]
-        [Surfaceparm(SurfparmFlags.AffectsVis | SurfparmFlags.Avoid, Related = skip)]
+        [Surfaceparm(SurfparmFlags.AffectsVis | SurfparmFlags.Avoid)]
         hint,
 
         [Display(Name = "Skip", Description = "Compiler skips these surfaces completely.")]
-        [Surfaceparm(Related = hint)]
+        [Surfaceparm(SurfparmFlags.Avoid)]
         skip,
 
         [Display(Name = "Slick", Description = "Use on slick surfaces like ice.")]

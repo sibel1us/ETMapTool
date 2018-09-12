@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ShaderTools.Shaders.Surfaceparm;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader.Surfaceparm
+namespace ShaderTools.Shaders.Helpers
 {
     /// <summary>
     /// Extra attributes for surfaceparms.
@@ -12,7 +13,6 @@ namespace ShaderTools.Shader.Surfaceparm
     public class SurfaceparmAttribute : Attribute
     {
         public SurfparmFlags Flags { get; set; }
-        public Surfaceparms Related { get; set; }
         public Surfaceparms[] UseWith { get; set; }
 
         public SurfaceparmAttribute() { }
@@ -34,5 +34,7 @@ namespace ShaderTools.Shader.Surfaceparm
         AffectsVis = 16,
         Unused = 32,
         Avoid = 64,
+        DoNotUse = 128,
+        Liquid = 256
     }
 }

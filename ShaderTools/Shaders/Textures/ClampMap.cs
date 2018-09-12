@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader
+namespace ShaderTools.Shaders.Stages
 {
-    public class Token
+    public class ClampMap
     {
-        public const string deformVertexes = "deformVertexes";
+        public Image Image { get; set; }
     }
 }

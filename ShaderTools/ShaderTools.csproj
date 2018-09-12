@@ -42,29 +42,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shaders\Exceptions\ShaderFileStructureException.cs" />
+    <Compile Include="Shaders\General\Cull.cs" />
+    <Compile Include="Shaders\General\Sort.cs" />
+    <Compile Include="Shaders\IO\ShaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Shader\General\DeformVertexes.cs" />
-    <Compile Include="Shader\EditorDirectives.cs" />
-    <Compile Include="Shader\General\FogParms.cs" />
-    <Compile Include="Shader\General\GeneralDirectives.cs" />
-    <Compile Include="Shader\General\SkyParms.cs" />
-    <Compile Include="Shader\Q3MapDirectives.cs" />
-    <Compile Include="Shader\RGBColor.cs" />
-    <Compile Include="Shader\Surfaceparms\SurfaceparmAttribute.cs" />
-    <Compile Include="Shader\Shader.cs" />
-    <Compile Include="Shader\Surfaceparms\Surfaceparms.cs" />
-    <Compile Include="Shader\Texture.cs" />
-    <Compile Include="Shader\Token.cs" />
-    <Compile Include="Shader\Writer.cs" />
+    <Compile Include="Shaders\Extensions\ShaderValidator.cs" />
+    <Compile Include="Shaders\General\DeformVertexes.cs" />
+    <Compile Include="Shaders\General\EditorDirectives.cs" />
+    <Compile Include="Shaders\General\FogParms.cs" />
+    <Compile Include="Shaders\General\IGeneralDirective.cs" />
+    <Compile Include="Shaders\General\SkyParms.cs" />
+    <Compile Include="Shaders\Helpers\ClassDisplayAttribute.cs" />
+    <Compile Include="Shaders\Logger.cs" />
+    <Compile Include="Shaders\RGBColor.cs" />
+    <Compile Include="Shaders\Helpers\SurfaceparmAttribute.cs" />
+    <Compile Include="Shaders\Shader.cs" />
+    <Compile Include="Shaders\Surfaceparms\Surfaceparms.cs" />
+    <Compile Include="Shaders\Textures\AnimMap.cs" />
+    <Compile Include="Shaders\Textures\ClampMap.cs" />
+    <Compile Include="Shaders\Textures\Image.cs" />
+    <Compile Include="Shaders\General\ImpliticMap.cs" />
+    <Compile Include="Shaders\Textures\ITexture.cs" />
+    <Compile Include="Shaders\Textures\LightMap.cs" />
+    <Compile Include="Shaders\Textures\Texture.cs" />
+    <Compile Include="Shaders\Textures\WhiteImage.cs" />
+    <Compile Include="Shaders\Token.cs" />
+    <Compile Include="Shaders\Waveform.cs" />
+    <Compile Include="Shaders\IO\ShaderWriter.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shader\Q3Map\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

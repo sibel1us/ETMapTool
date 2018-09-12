@@ -1,4 +1,5 @@
-﻿using ShaderTools.Shader.General;
+﻿using ShaderTools.Shaders;
+using ShaderTools.Shaders.General;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader
+namespace ShaderTools.Shaders.IO
 {
-    public class Writer
+    public class ShaderWriter
     {
-        #region Static Stuff
         private static readonly NumberFormatInfo nfi;
 
-        static Writer()
+        static ShaderWriter()
         {
             nfi = new NumberFormatInfo
             {
@@ -34,11 +34,8 @@ namespace ShaderTools.Shader
 
             return value.ToString(nfi);
         }
-        #endregion
 
-        #region Non-Static stuff
         private StringWriter sw;
-        
 
         private string Indent { get; set; }
 
@@ -62,11 +59,7 @@ namespace ShaderTools.Shader
             }
         }
 
-
-
-
-
-        public Writer()
+        public ShaderWriter()
         {
             IndentDepth = 0;
             sw = new StringWriter();
@@ -74,7 +67,7 @@ namespace ShaderTools.Shader
         }
 
 
-        public void Write(GeneralDirectives general)
+        public void Write(IGeneralDirective general)
         {
             if (general.NoPicmip)
                 Write("nopicmip");
@@ -94,7 +87,7 @@ namespace ShaderTools.Shader
         {
             if (skyParms != null)
             {
-                Write($"skyparms {skyParms.Farbox.ToString(false)} {skyParms.CloudHeight} {skyParms.Nearbox.ToString(false)}");
+                Write($"skyparms {skyParms.Farbox} {skyParms.CloudHeight} {skyParms.Nearbox}");
             }
         }
 
@@ -110,7 +103,7 @@ namespace ShaderTools.Shader
             }
         }
 
-        public void Write(DeformVertexes deformVertexes)
+        public void Write(IDeformVertexes deformVertexes)
         {
             if (deformVertexes != null)
             {
@@ -124,7 +117,5 @@ namespace ShaderTools.Shader
             sw.Write(Indent);
             sw.WriteLine(text);
         }
-
-        #endregion
     }
 }

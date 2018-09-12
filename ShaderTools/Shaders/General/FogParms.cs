@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shader.General
+namespace ShaderTools.Shaders.General
 {
-    public class FogParms
+    public class FogParms : IGeneralDirective
     {
+        /// <summary>
+        /// Fog opaque color.
+        /// </summary>
         public RGBColor Color { get; set; }
 
         /// <summary>

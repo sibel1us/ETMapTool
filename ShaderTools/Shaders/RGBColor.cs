@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShaderTools.Shader
+namespace ShaderTools.Shaders
 {
     public class RGBColor
     {
@@ -21,6 +21,9 @@ namespace ShaderTools.Shader
         [Range(0, 1, ErrorMessage = "Only values between 0 and 1 are valid")]
         public double Blue { get; set; }
 
+        /// <summary>
+        /// Initialize a new white color.
+        /// </summary>
         public RGBColor()
         {
             Red = 1.0;
@@ -28,6 +31,12 @@ namespace ShaderTools.Shader
             Blue = 1.0;
         }
 
+        /// <summary>
+        /// Initialize a new color.
+        /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         public RGBColor(double red, double green, double blue)
         {
             Red = red;
@@ -36,16 +45,12 @@ namespace ShaderTools.Shader
         }
 
         /// <summary>
-        /// "( R G B )" or "R G B", depending on "<paramref name="wrapToParentheses"/>".
+        /// Initialize a new RGB color from non-normalized RGB values (between 0 and 255).
         /// </summary>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
         /// <returns></returns>
-        public string ToString(bool wrapToParentheses)
-        {
-            string retVal = $"{Writer.Format(Red)} {Writer.Format(Green)} {Writer.Format(Blue)}";
-            if (wrapToParentheses) return $"( {retVal} )";
-            return retVal;
-        }
-
         public static RGBColor NonNormalized(int red, int green, int blue)
         {
             if (red < 0 || red > 255) throw new ArgumentOutOfRangeException(nameof(red));
@@ -58,6 +63,17 @@ namespace ShaderTools.Shader
                 ((double)green) / 255d,
                 ((double)blue) / 255d
             );
+        }
+
+        /// <summary>
+        /// "( R G B )" or "R G B", depending on "<paramref name="wrapToParentheses"/>".
+        /// </summary>
+        /// <returns></returns>
+        public string ToString(bool wrapToParentheses)
+        {
+            string retVal = $"{Writer.Format(Red)} {Writer.Format(Green)} {Writer.Format(Blue)}";
+            if (wrapToParentheses) return $"( {retVal} )";
+            return retVal;
         }
     }
 }
