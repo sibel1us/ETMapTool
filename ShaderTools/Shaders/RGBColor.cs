@@ -71,7 +71,8 @@ namespace ShaderTools.Shaders
         /// <returns></returns>
         public string ToString(bool wrapToParentheses)
         {
-            string retVal = $"{Writer.Format(Red)} {Writer.Format(Green)} {Writer.Format(Blue)}";
+            // TODO: writer double formatter
+            string retVal = "";//$"{Writer.Format(Red)} {Writer.Format(Green)} {Writer.Format(Blue)}";
             if (wrapToParentheses) return $"( {retVal} )";
             return retVal;
         }

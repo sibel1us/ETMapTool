@@ -69,18 +69,6 @@ namespace ShaderTools.Shaders.IO
 
         public void Write(IGeneralDirective general)
         {
-            if (general.NoPicmip)
-                Write("nopicmip");
-
-            if (general.NoMipmap)
-                Write("nomipmap");
-
-            if (general.Cull != default(Cull))
-                Write($"cull {general.Cull}");
-
-            Write(general.Skyparms);
-            Write(general.Fogparms);
-            Write(general.Deformvertexes);
         }
 
         public void Write(SkyParms skyParms)

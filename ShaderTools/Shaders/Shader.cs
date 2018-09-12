@@ -1,6 +1,5 @@
 ﻿using ShaderTools.Shaders.Exceptions;
 using ShaderTools.Shaders.General;
-using ShaderTools.Shaders.Surfaceparm;
 using System;
 using System.Collections.Generic;
 using System.IO;

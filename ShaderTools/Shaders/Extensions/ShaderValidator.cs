@@ -1,5 +1,4 @@
 ﻿using ShaderTools.Shaders.Helpers;
-using ShaderTools.Shaders.Surfaceparm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
