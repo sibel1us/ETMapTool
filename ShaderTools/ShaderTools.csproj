@@ -44,7 +44,11 @@
   <ItemGroup>
     <Compile Include="Shaders\Exceptions\ShaderFileStructureException.cs" />
     <Compile Include="Shaders\General\Cull.cs" />
+    <Compile Include="Shaders\General\DistanceCull.cs" />
+    <Compile Include="Shaders\General\NoMipMap.cs" />
+    <Compile Include="Shaders\General\NoPicMip.cs" />
     <Compile Include="Shaders\General\Sort.cs" />
+    <Compile Include="Shaders\General\UnknownGeneralDirective.cs" />
     <Compile Include="Shaders\Helpers\SurfaceparmHelper.cs" />
     <Compile Include="Shaders\IO\ShaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

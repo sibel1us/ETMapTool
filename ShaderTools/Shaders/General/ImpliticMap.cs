@@ -8,16 +8,52 @@ using System.Threading.Tasks;
 namespace ShaderTools.Shaders.General
 {
     /// <summary>
-    /// An implicit texture, will always result in "-"
+    /// Interface for <see cref="ImplicitMap"/>, <see cref="ImplicitBlend"/> and <see cref="ImplicitMask"/>.
     /// </summary>
-    public class ImplicitMap : ITexture
+    public interface IImplicitMap : IGeneralDirective
+    {
+        /// <summary>
+        /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
+        /// </summary>
+        Image Texture { get; set; }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public class ImplicitMap : IImplicitMap
     {
         // TODO: what to do with this?
-        public Image Image { get; set; }
+        /// <summary>
+        /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
+        /// </summary>
+        public Image Texture { get; set; }
 
         public override string ToString()
         {
             return "-";
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ImplicitBlend : IImplicitMap
+    {
+        /// <summary>
+        /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
+        /// </summary>
+        public Image Texture { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ImplicitMask : IImplicitMap
+    {
+        /// <summary>
+        /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
+        /// </summary>
+        public Image Texture { get; set; }
     }
 }

@@ -275,7 +275,6 @@ namespace ShaderTools.Shaders.IO
 
         /// <summary>
         /// Parses general, editor, q3map, and other directives such as skyparms, fogparms and surfaceparms.
-        /// Returns null on failures.
         /// </summary>
         /// <returns></returns>
         private IGeneralDirective ParseGeneralDirective()
@@ -329,7 +328,7 @@ namespace ShaderTools.Shaders.IO
 
             // Can't recognize directive - return error
             Logger.Warn($"Unrecognized general directive '{CurrentLine}'", Index, Path);
-            return null;
+            return new UnknownGeneralDirective(CurrentLine);
         }
 
         /// <summary>
