@@ -1,5 +1,7 @@
 ﻿using ShaderTools.Shaders.Exceptions;
+using ShaderTools.Shaders.Extensions;
 using ShaderTools.Shaders.General;
+using ShaderTools.Shaders.Stages;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,38 +13,24 @@ namespace ShaderTools.Shaders
 {
     public class Shader
     {
-        public string ETFolder { get; set; } = null;
-
         public string Name { get; set; }
 
         public List<IGeneralDirective> GeneralDirectives { get; set; }
         public HashSet<Surfaceparms> Surfparms { get; set; }
-        // STAGE
-
-        /// <summary>
-        /// Initialize a new shader with unknown shader-file and game-locations.
-        /// </summary>
-        public Shader() : this("", null) { }
-
-        /// <summary>
-        /// Initialize a new shader with unknown game folder.
-        /// </summary>
-        /// <param name="fullPath"></param>
-        public Shader(string name) : this(name, null) { }
+        public List<Stage> Stages { get; set; }
 
         /// <summary>
         /// Initialize a new shader with a known game folder.
         /// </summary>
-        public Shader(string name, string gamePath)
+        public Shader(string name)
         {
             Logger.Debug($"Initialized new shader '{name}'");
 
-            ETFolder = gamePath;
-
             // Initialize variables
-            Name = name;
-            Surfparms = new HashSet<Surfaceparms>();
-            GeneralDirectives = new List<IGeneralDirective>();
+            this.Name = name;
+            this.Surfparms = new HashSet<Surfaceparms>();
+            this.GeneralDirectives = new List<IGeneralDirective>();
+            this.Stages = new List<Stage>();
         }
 
         /// <summary>
@@ -50,7 +38,7 @@ namespace ShaderTools.Shaders
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public string AddGeneralDirective(IGeneralDirective value)
+        public ShaderValidation AddGeneralDirective(IGeneralDirective value)
         {
             if (value == null)
             {
@@ -68,9 +56,11 @@ namespace ShaderTools.Shaders
                 errorMessage = "Duplicate deformVertexes-directive";
             }
 
+            errorMessage = errorMessage + "";
+
             Logger.Debug($"Added general directive {value.GetType()} to shader.");
             this.GeneralDirectives.Add(value);
-            return errorMessage;
+            return null; // TODO
         }
     }
 }

@@ -14,6 +14,15 @@ namespace ShaderTools.Shaders
         static Token()
         {
         }
+        #region File System
+        public const string ETexe = "ET.exe";
+        public const string etmain = "etmain";
+        public const string textures = "textures";
+        public const string scripts = "scripts";
+        public const string models = "models";
+        public const string pak0 = "pak0.pk3";
+        #endregion File System
+
 
         #region General Shader Elements
         public const string commentPrefix = "//";
@@ -62,6 +71,7 @@ namespace ShaderTools.Shaders
         #endregion General Directives
 
         #region Stage Directives
+        public const string rgbGen = "rgbGen";
         #endregion Stage Directives
 
         #region Miscellaneous

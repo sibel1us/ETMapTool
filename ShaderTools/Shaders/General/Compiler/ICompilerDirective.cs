@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Textures
+namespace ShaderTools.Shaders.General.Compiler
 {
-    public class ClampMap
+    public interface ICompilerDirective
     {
-        public Texture Image { get; set; }
     }
 }

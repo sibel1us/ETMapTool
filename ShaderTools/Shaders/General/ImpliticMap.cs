@@ -1,6 +1,7 @@
 ﻿using ShaderTools.Shaders.Attributes;
 using ShaderTools.Shaders.Helpers;
 using ShaderTools.Shaders.Stages;
+using ShaderTools.Shaders.Textures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ShaderTools.Shaders.General
         /// <summary>
         /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
         /// </summary>
-        Image Texture { get; set; }
+        Texture Texture { get; set; }
     }
 
     /// <summary>
@@ -30,7 +31,7 @@ namespace ShaderTools.Shaders.General
         /// <summary>
         /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
         /// </summary>
-        public Image Texture { get; set; }
+        public Texture Texture { get; set; }
 
         public override string ToString()
         {
@@ -47,7 +48,7 @@ namespace ShaderTools.Shaders.General
         /// <summary>
         /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
         /// </summary>
-        public Image Texture { get; set; }
+        public Texture Texture { get; set; }
     }
 
     /// <summary>
@@ -59,6 +60,6 @@ namespace ShaderTools.Shaders.General
         /// <summary>
         /// Texture to be mapped implicitly. If <see langword="null"/>, will try to use the shader name.
         /// </summary>
-        public Image Texture { get; set; }
+        public Texture Texture { get; set; }
     }
 }

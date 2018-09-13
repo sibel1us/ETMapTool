@@ -12,8 +12,8 @@ namespace ShaderTools.Shaders.General
     [Format(Token.skyparms, "cloud height", "outerbox", "innerbox")]
     public class SkyParms : IGeneralDirective
     {
-        public Image Farbox { get; set; }
+        public Textures.Texture Farbox { get; set; }
         public int CloudHeight { get; set; } = 128;
-        public Image Nearbox { get; set; } //TODO: deprecated?
+        public Textures.Texture Nearbox { get; set; } //TODO: deprecated?
     }
 }

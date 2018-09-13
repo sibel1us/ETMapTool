@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Shaders\Exceptions\ShaderFileStructureException.cs" />
+    <Compile Include="Shaders\Exceptions\ShaderNameException.cs" />
+    <Compile Include="Shaders\General\Compiler\ICompilerDirective.cs" />
     <Compile Include="Shaders\General\Cull.cs" />
     <Compile Include="Shaders\General\DistanceCull.cs" />
     <Compile Include="Shaders\General\Editor\EditorImage.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Shaders\General\WaterFogVars.cs" />
     <Compile Include="Shaders\Helpers\SurfaceparmHelper.cs" />
     <Compile Include="Shaders\Helpers\TokenHelper.cs" />
+    <Compile Include="Shaders\IO\FileUtil.cs" />
     <Compile Include="Shaders\IO\ShaderReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -84,14 +87,16 @@
     <Compile Include="Shaders\RGBColor.cs" />
     <Compile Include="Shaders\Attributes\SurfaceparmAttribute.cs" />
     <Compile Include="Shaders\Shader.cs" />
+    <Compile Include="Shaders\Stages\IStageDirective.cs" />
+    <Compile Include="Shaders\Stages\RGBGen.cs" />
+    <Compile Include="Shaders\Stages\Stage.cs" />
     <Compile Include="Shaders\Surfaceparms.cs" />
     <Compile Include="Shaders\Textures\AnimMap.cs" />
     <Compile Include="Shaders\Textures\ClampMap.cs" />
-    <Compile Include="Shaders\Textures\Image.cs" />
+    <Compile Include="Shaders\Textures\Texture.cs" />
     <Compile Include="Shaders\General\ImpliticMap.cs" />
     <Compile Include="Shaders\Textures\ITexture.cs" />
     <Compile Include="Shaders\Textures\LightMap.cs" />
-    <Compile Include="Shaders\Textures\Texture.cs" />
     <Compile Include="Shaders\Textures\WhiteImage.cs" />
     <Compile Include="Shaders\Token.cs" />
     <Compile Include="Shaders\Waveform.cs" />

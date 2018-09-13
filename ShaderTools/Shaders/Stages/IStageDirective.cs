@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Textures
+namespace ShaderTools.Shaders.Stages
 {
-    public class ClampMap
+    public interface IStageDirective
     {
-        public Texture Image { get; set; }
     }
 }

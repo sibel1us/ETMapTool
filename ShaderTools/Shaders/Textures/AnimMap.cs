@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using ShaderTools.Shaders.Helpers;
 using ShaderTools.Shaders.Attributes;
 
-namespace ShaderTools.Shaders.Stages
+namespace ShaderTools.Shaders.Textures
 {
     [ClassDisplay(Name = "AnimMap", Description = "")]
     public class AnimMap : ITexture
@@ -22,7 +22,7 @@ namespace ShaderTools.Shaders.Stages
         /// </summary>
         [MinLength(1)]
         [MaxLength(8)]
-        public List<Image> Images { get; set; }
+        public List<Texture> Images { get; set; }
 
         /// <summary>
         /// animMap 10 path/img1.jpg path/img2.jpg .... line breaks allowed between textures

@@ -12,6 +12,6 @@ namespace ShaderTools.Shaders.General.Editor
     [ClassDisplay(Name = "Editor Image", Description = "Texture shown for this surface in level editor. Empty values default to the shader name.")]
     public class EditorImage : IEditorDirective
     {
-        public Image Image { get; set; }
+        public Textures.Texture Image { get; set; }
     }
 }

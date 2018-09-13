@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Stages
+namespace ShaderTools.Shaders.Textures
 {
     /// <summary>
     /// Is always "$whiteimage"
