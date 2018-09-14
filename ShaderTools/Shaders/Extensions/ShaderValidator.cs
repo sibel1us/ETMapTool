@@ -48,7 +48,7 @@ namespace ShaderTools.Shaders.Extensions
     public static class ShaderValidator
     {
         private static Regex _nameRegex =
-            new Regex(@"(textures\/)(([a-z0-9][\w-]+[a-z0-9])|[a-z0-9]+)+(\/(([a-z0-9][\w-]+[a-z0-9])|[a-z0-9]+)+)+");
+            new Regex(@"textures(\/([a-z0-9]([\w-]*[a-z0-9])?)){2,}");
 
         /// <summary>
         /// Validate shader name
