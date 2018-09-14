@@ -36,7 +36,7 @@ namespace ShaderTools.Shaders.Textures
 
             foreach (var img in this.Images)
             {
-                sb.AppendLine(img.ToStringWithExtension());
+                //sb.AppendLine(img.ToStringWithExtension());
             }
 
             return sb.ToString();

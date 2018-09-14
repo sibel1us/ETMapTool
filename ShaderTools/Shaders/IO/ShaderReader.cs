@@ -223,7 +223,7 @@ namespace ShaderTools.Shaders.IO
 
                         if (parsed != null)
                         {
-                            string err = shader.AddGeneralDirective(parsed);
+                            string err = "";//shader.AddGeneralDirective(parsed);
 
                             if (!string.IsNullOrEmpty(err))
                                 Logger.Warn($"{err} '{CurrentLine}'.", Index, Path);
