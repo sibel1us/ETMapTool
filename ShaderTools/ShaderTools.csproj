@@ -44,28 +44,28 @@
   <ItemGroup>
     <Compile Include="Utilities\Exceptions\ShaderFileStructureException.cs" />
     <Compile Include="Utilities\Exceptions\ShaderNameException.cs" />
-    <Compile Include="Objects\Compiler\ICompilerDirective.cs" />
-    <Compile Include="Objects\General\Cull.cs" />
-    <Compile Include="Objects\General\DistanceCull.cs" />
-    <Compile Include="Objects\Editor\EditorImage.cs" />
-    <Compile Include="Objects\Editor\NoCarve.cs" />
-    <Compile Include="Objects\Editor\Transparency.cs" />
-    <Compile Include="Objects\General\EntityMergable.cs" />
-    <Compile Include="Objects\General\FogVars.cs" />
-    <Compile Include="Objects\General\LightgridAmbientMultiplier.cs" />
-    <Compile Include="Objects\General\LightgridDirectionalMultiplier.cs" />
-    <Compile Include="Objects\General\NoCompress.cs" />
-    <Compile Include="Objects\General\NoFog.cs" />
-    <Compile Include="Objects\General\NoMipMap.cs" />
-    <Compile Include="Objects\General\NoPicMip.cs" />
-    <Compile Include="Objects\General\PolygonOffset.cs" />
-    <Compile Include="Objects\General\Portal.cs" />
-    <Compile Include="Objects\General\SkyFogVars.cs" />
-    <Compile Include="Objects\General\SunShader.cs" />
-    <Compile Include="Objects\General\Sort.cs" />
-    <Compile Include="Objects\General\Unknown.cs" />
+    <Compile Include="Objects\ICompilerDirective.cs" />
+    <Compile Include="Objects\GeneralDirectives\Cull.cs" />
+    <Compile Include="Objects\GeneralDirectives\DistanceCull.cs" />
+    <Compile Include="Objects\EditorDirectives\EditorImage.cs" />
+    <Compile Include="Objects\EditorDirectives\NoCarve.cs" />
+    <Compile Include="Objects\EditorDirectives\Transparency.cs" />
+    <Compile Include="Objects\GeneralDirectives\EntityMergable.cs" />
+    <Compile Include="Objects\GeneralDirectives\FogVars.cs" />
+    <Compile Include="Objects\GeneralDirectives\LightgridAmbientMultiplier.cs" />
+    <Compile Include="Objects\GeneralDirectives\LightgridDirectionalMultiplier.cs" />
+    <Compile Include="Objects\GeneralDirectives\NoCompress.cs" />
+    <Compile Include="Objects\GeneralDirectives\NoFog.cs" />
+    <Compile Include="Objects\GeneralDirectives\NoMipMap.cs" />
+    <Compile Include="Objects\GeneralDirectives\NoPicMip.cs" />
+    <Compile Include="Objects\GeneralDirectives\PolygonOffset.cs" />
+    <Compile Include="Objects\GeneralDirectives\Portal.cs" />
+    <Compile Include="Objects\GeneralDirectives\SkyFogVars.cs" />
+    <Compile Include="Objects\GeneralDirectives\SunShader.cs" />
+    <Compile Include="Objects\GeneralDirectives\Sort.cs" />
+    <Compile Include="Objects\GeneralDirectives\Unknown.cs" />
     <Compile Include="Utilities\Attributes\FormatAttribute.cs" />
-    <Compile Include="Objects\General\WaterFogVars.cs" />
+    <Compile Include="Objects\GeneralDirectives\WaterFogVars.cs" />
     <Compile Include="Utilities\Helpers\SurfaceparmHelper.cs" />
     <Compile Include="Utilities\Helpers\TokenHelper.cs" />
     <Compile Include="Utilities\IO\FileUtil.cs" />
@@ -77,11 +77,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Utilities\ShaderValidator.cs" />
-    <Compile Include="Objects\General\DeformVertexes.cs" />
-    <Compile Include="Objects\Editor\IEditorDirective.cs" />
-    <Compile Include="Objects\General\FogParms.cs" />
-    <Compile Include="Objects\General\IGeneralDirective.cs" />
-    <Compile Include="Objects\General\SkyParms.cs" />
+    <Compile Include="Objects\GeneralDirectives\DeformVertexes.cs" />
+    <Compile Include="Objects\IEditorDirective.cs" />
+    <Compile Include="Objects\GeneralDirectives\FogParms.cs" />
+    <Compile Include="Objects\IGeneralDirective.cs" />
+    <Compile Include="Objects\GeneralDirectives\SkyParms.cs" />
     <Compile Include="Utilities\Attributes\ClassDisplayAttribute.cs" />
     <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Objects\RGBColor.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Objects\Textures\AnimMap.cs" />
     <Compile Include="Objects\Textures\ClampMap.cs" />
     <Compile Include="Objects\Textures\Texture.cs" />
-    <Compile Include="Objects\General\ImpliticMap.cs" />
+    <Compile Include="Objects\GeneralDirectives\ImpliticMap.cs" />
     <Compile Include="Objects\Textures\ITexture.cs" />
     <Compile Include="Objects\Textures\LightMap.cs" />
     <Compile Include="Objects\Textures\WhiteImage.cs" />
@@ -102,7 +102,9 @@
     <Compile Include="Objects\Waveform.cs" />
     <Compile Include="Utilities\IO\ShaderWriter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Objects\CompilerDirectives\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

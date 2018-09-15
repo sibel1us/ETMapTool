@@ -1,5 +1,4 @@
-﻿using ShaderTools.Shaders.Extensions;
-using ShaderTools.Shaders.Textures;
+﻿using ShaderTools.Objects.Textures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.IO
+namespace ShaderTools.Utilities.IO
 {
     public static class FileUtil
     {

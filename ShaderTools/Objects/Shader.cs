@@ -1,15 +1,15 @@
-﻿using ShaderTools.Shaders.Exceptions;
-using ShaderTools.Shaders.Extensions;
-using ShaderTools.Shaders.General;
-using ShaderTools.Shaders.Stages;
+﻿using ShaderTools.Utilities.Exceptions;
+using ShaderTools.Objects.GeneralDirectives;
+using ShaderTools.Objects.StageDirectives;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShaderTools.Utilities;
 
-namespace ShaderTools.Shaders
+namespace ShaderTools.Objects
 {
     public class Shader
     {

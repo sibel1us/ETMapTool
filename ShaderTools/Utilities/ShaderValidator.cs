@@ -1,6 +1,6 @@
-﻿using ShaderTools.Shaders.Attributes;
-using ShaderTools.Shaders.Exceptions;
-using ShaderTools.Shaders.Helpers;
+﻿using ShaderTools.Utilities.Attributes;
+using ShaderTools.Utilities.Exceptions;
+using ShaderTools.Utilities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ShaderTools.Objects;
+using ShaderTools.Objects.GeneralDirectives;
 
-namespace ShaderTools.Shaders.Extensions
+namespace ShaderTools.Utilities
 {
     public enum TextureStatus
     {
@@ -47,8 +49,7 @@ namespace ShaderTools.Shaders.Extensions
 
     public static class ShaderValidator
     {
-        private static Regex _nameRegex =
-            new Regex(@"textures(\/([a-z0-9]([\w-]*[a-z0-9])?)){2,}");
+        private static Regex _nameRegex = new Regex(Token.ShaderNameRegex);
 
         /// <summary>
         /// Validate shader name
@@ -82,14 +83,14 @@ namespace ShaderTools.Shaders.Extensions
             }
 
             // Portal
-            if (shader.GeneralDirectives.Any(d => (d as General.Sort)?.Value == General.SortValue.portal)
-                && shader.GeneralDirectives.Any(d => d is General.Portal))
+            if (shader.GeneralDirectives.Any(d => (d as Sort)?.Value == SortValue.portal)
+                && shader.GeneralDirectives.Any(d => d is Portal))
             {
                 list.Add(new ShaderValidation
                 {
                     Level = ValidationLevel.Superficial,
                     Message = "Using both portal and sort portal is unnecessary..",
-                    Targets = { typeof(General.Sort), typeof(General.Portal) }
+                    Targets = { typeof(Sort), typeof(Portal) }
                 });
             }
 

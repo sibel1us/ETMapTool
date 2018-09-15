@@ -1,5 +1,5 @@
-﻿using ShaderTools.Shaders.Attributes;
-using ShaderTools.Shaders.Helpers;
+﻿using ShaderTools.Utilities.Attributes;
+using ShaderTools.Utilities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders
+namespace ShaderTools.Objects
 {
     /// <summary>
     /// Definitions for surfaceparm-values.

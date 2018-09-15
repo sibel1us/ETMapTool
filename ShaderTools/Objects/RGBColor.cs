@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShaderTools.Shaders
+namespace ShaderTools.Objects
 {
     public class RGBColor
     {

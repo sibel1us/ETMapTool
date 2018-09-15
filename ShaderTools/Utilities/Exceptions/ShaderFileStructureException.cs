@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Exceptions
+namespace ShaderTools.Utilities.Exceptions
 {
     class ShaderFileStructureException : Exception
     {

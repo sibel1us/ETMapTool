@@ -1,5 +1,4 @@
-﻿using ShaderTools.Shaders;
-using ShaderTools.Shaders.General;
+﻿using ShaderTools.Objects.GeneralDirectives;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,8 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShaderTools.Objects;
 
-namespace ShaderTools.Shaders.IO
+namespace ShaderTools.Utilities.IO
 {
     public class ShaderWriter
     {

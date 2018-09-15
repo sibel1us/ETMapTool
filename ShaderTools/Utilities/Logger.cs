@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders
+namespace ShaderTools.Utilities
 {
     public class Logger
     {

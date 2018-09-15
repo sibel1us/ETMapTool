@@ -1,12 +1,12 @@
-﻿using ShaderTools.Shaders.Extensions;
-using ShaderTools.Shaders.IO;
+﻿using ShaderTools.Utilities;
+using ShaderTools.Utilities.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Textures
+namespace ShaderTools.Objects.Textures
 {
     /// <summary>
     /// An explicit texture file, may or may not have file extension

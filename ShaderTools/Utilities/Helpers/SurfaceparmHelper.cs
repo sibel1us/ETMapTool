@@ -1,4 +1,5 @@
-﻿using ShaderTools.Shaders.Attributes;
+﻿using ShaderTools.Objects;
+using ShaderTools.Utilities.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Helpers
+namespace ShaderTools.Utilities.Helpers
 {
     public static class SurfaceparmHelper
     {

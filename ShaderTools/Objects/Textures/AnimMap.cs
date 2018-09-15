@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using ShaderTools.Shaders.Helpers;
-using ShaderTools.Shaders.Attributes;
+using ShaderTools.Utilities.Helpers;
+using ShaderTools.Utilities.Attributes;
 
-namespace ShaderTools.Shaders.Textures
+namespace ShaderTools.Objects.Textures
 {
     [ClassDisplay(Name = "AnimMap", Description = "")]
     public class AnimMap : ITexture

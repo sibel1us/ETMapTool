@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders.Attributes
+namespace ShaderTools.Utilities.Attributes
 {
     /// <summary>
     /// Extra attributes for surfaceparms.

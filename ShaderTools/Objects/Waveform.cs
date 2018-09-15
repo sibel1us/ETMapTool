@@ -1,5 +1,5 @@
-﻿using ShaderTools.Shaders.Attributes;
-using ShaderTools.Shaders.Helpers;
+﻿using ShaderTools.Utilities.Attributes;
+using ShaderTools.Utilities.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Shaders
+namespace ShaderTools.Objects
 {
     [ClassDisplay(Name = "Waveform", Description = "Represents values changing across time.")]
     public class Waveform
