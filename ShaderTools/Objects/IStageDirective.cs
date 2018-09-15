@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Objects
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IStageDirective
     {
     }

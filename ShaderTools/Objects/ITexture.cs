@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Objects.Textures
+namespace ShaderTools.Objects
 {
     /// <summary>
     /// Provides an interface for implicit and explicit textures.

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\CompilerDirectives\TessSize.cs" />
     <Compile Include="Utilities\Exceptions\ShaderFileStructureException.cs" />
     <Compile Include="Utilities\Exceptions\ShaderNameException.cs" />
     <Compile Include="Objects\ICompilerDirective.cs" />
@@ -87,24 +88,22 @@
     <Compile Include="Objects\RGBColor.cs" />
     <Compile Include="Utilities\Attributes\SurfaceparmAttribute.cs" />
     <Compile Include="Objects\Shader.cs" />
-    <Compile Include="Objects\Stages\IStageDirective.cs" />
-    <Compile Include="Objects\Stages\RGBGen.cs" />
-    <Compile Include="Objects\Stages\Stage.cs" />
+    <Compile Include="Objects\IStageDirective.cs" />
+    <Compile Include="Objects\StageDirectives\RGBGen.cs" />
+    <Compile Include="Objects\Stage.cs" />
     <Compile Include="Objects\Surfaceparms.cs" />
     <Compile Include="Objects\Textures\AnimMap.cs" />
     <Compile Include="Objects\Textures\ClampMap.cs" />
     <Compile Include="Objects\Textures\Texture.cs" />
     <Compile Include="Objects\GeneralDirectives\ImpliticMap.cs" />
-    <Compile Include="Objects\Textures\ITexture.cs" />
+    <Compile Include="Objects\ITexture.cs" />
     <Compile Include="Objects\Textures\LightMap.cs" />
     <Compile Include="Objects\Textures\WhiteImage.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Objects\Waveform.cs" />
     <Compile Include="Utilities\IO\ShaderWriter.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\CompilerDirectives\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
