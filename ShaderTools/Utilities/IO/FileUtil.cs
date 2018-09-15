@@ -44,7 +44,7 @@ namespace ShaderTools.Shaders.IO
         /// <summary>
         /// Allowed image types (jpg, tga, bmp).
         /// </summary>
-        public static string[] TextureExtensions = { "jpg", "tga", "bmp" };
+        public static string[] TextureExtensions = { ".jpg", ".tga", ".bmp" };
 
         /// <summary>
         /// Validate texture file location and extension.
@@ -59,7 +59,8 @@ namespace ShaderTools.Shaders.IO
             // Compare file extension against allowed filetypes
             string fileExt = Path.GetExtension(shortPath);
 
-            if (!TextureExtensions.Contains(fileExt))
+            // Allow missing extension, but not a wrong one
+            if (fileExt != string.Empty && !TextureExtensions.Contains(fileExt))
             {
                 throw new FileLoadException($"Unknown extension {fileExt}", shortPath);
             }
@@ -82,11 +83,13 @@ namespace ShaderTools.Shaders.IO
 
                     // Return a prompt for changing file extension
                     if (File.Exists(Path.ChangeExtension(path, fileExt)))
+                    {
                         return TextureStatus.DuplicateExtension;
+                    }
                 }
 
                 // Found with no "duplicates"
-                return TextureStatus.Found;
+                return TextureStatus.Ok;
             }
 
             // File doesn't exist, check if only extension is wrong

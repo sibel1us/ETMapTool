@@ -19,14 +19,14 @@ namespace ShaderTools.Shaders.Extensions
         [Display(Name = "Missing", Description = "Texture not found.")]
         Missing,
 
-        [Display(Name = "Multiple", Description = "Multiple textures with different types exist with the same name.")]
+        [Display(Name = "Found multiple", Description = "Multiple textures with different types exist with the same name.")]
         DuplicateExtension,
 
         [Display(Name = "Found (wrong extension)", Description = "Texture found, but with different extension.")]
         WrongExtension,
 
         [Display(Name = "Found", Description = "Texture found.")]
-        Found,
+        Ok,
     }
 
     public enum ValidationLevel
