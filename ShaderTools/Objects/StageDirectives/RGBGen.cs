@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Objects.StageDirectives
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum RGBGenType
     {
         [Display(Name = "Identity", Description = "")]
@@ -31,14 +34,28 @@ namespace ShaderTools.Objects.StageDirectives
         [Display(Name = "Wave", Description = "")]
         wave,
 
-        [Display(Name = "Constant", Description = "")]
+        [Display(Name = "Constant", Description = "Apply a color filter on the surface.")]
         @const
     }
 
+    /// <summary>
+    /// Affects how color is calculated on the layer.
+    /// </summary>
     public class RGBGen : IStageDirective
     {
+        /// <summary>
+        /// Value of the RGBGen. See <see cref="Color"/> and <see cref="Wave"/>.
+        /// </summary>
         public RGBGenType Type { get; private set; }
+
+        /// <summary>
+        /// Only applicable if <see cref="Type"/> is <see cref="RGBGenType.@const"/>.
+        /// </summary>
         public RGBColor Color { get; set; }
+
+        /// <summary>
+        /// Only applicable if <see cref="Type"/> is <see cref="RGBGenType.wave"/>.
+        /// </summary>
         public Waveform Wave { get; set; }
 
         /// <summary>
@@ -76,17 +93,15 @@ namespace ShaderTools.Objects.StageDirectives
         /// <returns></returns>
         public override string ToString()
         {
-            if (this.Type == RGBGenType.@const)
+            switch (this.Type)
             {
-                return $"{Token.rgbGen} {this.Type} {this.Color}";
+                case RGBGenType.wave:
+                    return $"{Token.rgbGen} {this.Type} {this.Wave}";
+                case RGBGenType.@const:
+                    return $"{Token.rgbGen} {this.Type} {this.Color}";
+                default:
+                    return $"{Token.rgbGen} {this.Type}";
             }
-            if (this.Type == RGBGenType.wave)
-            {
-                return $"{Token.rgbGen} {this.Type} {this.Wave}";
-
-            }
-
-            return $"{Token.rgbGen} {this.Type}";
         }
     }
 }

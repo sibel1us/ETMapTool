@@ -1,5 +1,4 @@
 ﻿using ShaderTools.Utilities.Attributes;
-using ShaderTools.Utilities.Exceptions;
 using ShaderTools.Utilities.Helpers;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 using ShaderTools.Objects;
 using ShaderTools.Objects.GeneralDirectives;
 
-namespace ShaderTools.Utilities
+namespace ShaderTools.Utilities.Validation
 {
     public enum TextureStatus
     {
@@ -31,6 +30,9 @@ namespace ShaderTools.Utilities
         Ok,
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum ValidationLevel
     {
         None = 0,
@@ -39,6 +41,9 @@ namespace ShaderTools.Utilities
         Critical
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class ShaderValidation
     {
         public ValidationLevel Level { get; set; }
@@ -47,6 +52,9 @@ namespace ShaderTools.Utilities
         public List<Surfaceparms> Surfparms { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ShaderValidator
     {
         private static Regex _nameRegex = new Regex(Token.ShaderNameRegex);

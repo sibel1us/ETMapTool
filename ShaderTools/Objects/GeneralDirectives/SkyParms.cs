@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShaderTools.Objects.Textures;
 
 namespace ShaderTools.Objects.GeneralDirectives
 {
@@ -12,8 +13,8 @@ namespace ShaderTools.Objects.GeneralDirectives
     [Format(Token.skyparms, "cloud height", "outerbox", "innerbox")]
     public class SkyParms : IGeneralDirective
     {
-        public Textures.Texture Farbox { get; set; }
+        public Texture Farbox { get; set; }
         public int CloudHeight { get; set; } = 128;
-        public Textures.Texture Nearbox { get; set; } //TODO: deprecated?
+        public Texture Nearbox { get; set; } //TODO: deprecated?
     }
 }

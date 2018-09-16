@@ -16,7 +16,7 @@ namespace ShaderTools.Objects
         /// Waveform function
         /// </summary>
         [Display(Name = "Function", Description = "Waveform function used in the calculation.")]
-        public WaveformFunctions Function { get; set; }
+        public WaveformFunction Function { get; set; }
 
         /// <summary>
         /// Initial value.
@@ -46,7 +46,7 @@ namespace ShaderTools.Objects
     /// <summary>
     /// Represent the different waveform functions used in rgbGen, alphaGen and DeformVertexes.
     /// </summary>
-    public enum WaveformFunctions
+    public enum WaveformFunction
     {
         [Display(Name = "Sine Wave", Description = "Smooth sine wave.")]
         Sin,

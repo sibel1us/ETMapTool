@@ -8,9 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Objects.GeneralDirectives
+namespace ShaderTools.Objects.CompilerDirectives
 {
-    public interface IDeformVertexes : IGeneralDirective
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IDeformVertexes : ICompilerDirective
     {
     }
 
@@ -24,12 +27,12 @@ namespace ShaderTools.Objects.GeneralDirectives
     /// Pillar autosprite.
     /// </summary>
     [ClassDisplay(Name = "AutoSprite 2", Description = "A sprite, the longest axis of the face is always rendered as if looked at from a right angle.")]
-    public class DeformAutosprite2 : IDeformVertexes { }
+    public class DeformVertexesAutosprite2 : IDeformVertexes { }
 
     /// <summary>
     /// 
     /// </summary>
-    public class DeformWave : IDeformVertexes
+    public class DeformVertexesWave : IDeformVertexes
     {
         public int Division { get; set; }
         public Waveform Waveform { get; set; }
@@ -38,7 +41,7 @@ namespace ShaderTools.Objects.GeneralDirectives
     /// <summary>
     /// 
     /// </summary>
-    public struct DeformNormal : IDeformVertexes
+    public struct DeformVertexesNormal : IDeformVertexes
     {
         public int Division { get; set; }
         public double Base { get; set; }
@@ -49,7 +52,7 @@ namespace ShaderTools.Objects.GeneralDirectives
     /// <summary>
     /// 
     /// </summary>
-    public class DeformBulge : IDeformVertexes
+    public class DeformVertexesBulge : IDeformVertexes
     {
         public double S { get; set; }
         public double T { get; set; }
@@ -59,11 +62,11 @@ namespace ShaderTools.Objects.GeneralDirectives
     /// <summary>
     /// 
     /// </summary>
-    public class DeformMove : IDeformVertexes
+    public class DeformVertexesMove : IDeformVertexes
     {
-        public double Base { get; set; }
-        public double Amplitude { get; set; }
-        public double Phase { get; set; }
-        public double Frequency { get; set; }
+        public Waveform Waveform { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
     }
 }

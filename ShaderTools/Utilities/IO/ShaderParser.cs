@@ -12,19 +12,19 @@ using System.Threading.Tasks;
 
 namespace ShaderTools.Utilities.IO
 {
-    internal enum ReaderDepth
+    public class ShaderParser
     {
-        Root,
-        Shader,
-        Stage,
-        EndOfFile
-    }
+        internal enum ParserPosition
+        {
+            Outside,
+            InShader,
+            InStage,
+            EndOfFile
+        }
 
-    public class ShaderReader
-    {
         public string Path { get; set; }
 
-        private ReaderDepth Depth { get; set; }
+        private ParserPosition Position { get; set; }
 
         /// <summary>
         /// .shader-file's lines
@@ -44,18 +44,31 @@ namespace ShaderTools.Utilities.IO
             get
             {
                 // Get line, get rid of whitespace
-                string line = Lines[Index].Trim();
+                string line = Lines[Index];
 
-                // No need for null checks as we access array index
+                // Skip empty lines
                 if (string.IsNullOrWhiteSpace(line))
-                    return line;
+                {
+                    return string.Empty;
+                }
 
-                // If line has comment, get part before it
-                if (line.IndexOf("//") != -1)
-                    return line.Substring(0, line.IndexOf("//")).TrimEnd();
+                int commentIndex = line.IndexOf("//");
 
-                // Return line as-is otherwise
-                return line;
+                // Line starts with a comment
+                if (commentIndex != -1)
+                {
+                    // Parse header comments if not inside a shader
+                    if (Position == ParserPosition.Outside && commentIndex == 0)
+                    {
+                        return line.TrimEnd();
+                    }
+
+                    // Otherwise skip comments
+                    return line.Substring(0, commentIndex).Trim();
+                }
+
+                // Return line
+                return line.Trim();
             }
         }
 
@@ -63,7 +76,7 @@ namespace ShaderTools.Utilities.IO
         /// 
         /// </summary>
         /// <param name="shaderFilePath"></param>
-        public ShaderReader(string shaderFilePath)
+        public ShaderParser(string shaderFilePath)
         {
             if (!File.Exists(shaderFilePath))
             {
@@ -92,18 +105,18 @@ namespace ShaderTools.Utilities.IO
             }
 
             // End of file reached
-            
-            if (Depth == ReaderDepth.Shader)
+
+            if (Position == ParserPosition.InShader)
             {
                 throw new ShaderFileStructureException("Missing closing bracket at the end of file.", Path);
             }
 
-            if (Depth == ReaderDepth.Stage)
+            if (Position == ParserPosition.InStage)
             {
                 throw new ShaderFileStructureException("Two missing closing brackets at the end of file.", Path);
             }
 
-            Depth = ReaderDepth.EndOfFile;
+            Position = ParserPosition.EndOfFile;
         }
 
         /// <summary>
@@ -114,9 +127,9 @@ namespace ShaderTools.Utilities.IO
         {
             var shaders = new List<Shader>();
             this.Index = 0;
-            this.Depth = ReaderDepth.Root;
+            this.Position = ParserPosition.Outside;
 
-            while (Depth != ReaderDepth.EndOfFile)
+            while (Position != ParserPosition.EndOfFile)
             {
                 var shader = ParseShader();
 
@@ -126,12 +139,12 @@ namespace ShaderTools.Utilities.IO
                 }
             }
 
-            if (Depth == ReaderDepth.Shader)
+            if (Position == ParserPosition.InShader)
             {
                 throw new ShaderFileStructureException("Missing closing brace at the end of file.", Path);
             }
 
-            if (Depth == ReaderDepth.Stage)
+            if (Position == ParserPosition.InStage)
             {
                 throw new ShaderFileStructureException("Two missing closing braces at the end of file.", Path);
             }
@@ -148,7 +161,7 @@ namespace ShaderTools.Utilities.IO
             PassWhiteSpace();
 
             // TODO: check if this check is ever needed
-            if (Depth == ReaderDepth.EndOfFile)
+            if (Position == ParserPosition.EndOfFile)
             {
                 throw new ShaderFileStructureException($"Unexpected end of file.", Index, Path);
             }
@@ -164,7 +177,7 @@ namespace ShaderTools.Utilities.IO
             Shader shader = new Shader(shaderName);
 
             Index++;
-            Depth = ReaderDepth.Shader;
+            Position = ParserPosition.InShader;
 
             // Skip whitespace and comments
             PassWhiteSpace();
@@ -176,28 +189,28 @@ namespace ShaderTools.Utilities.IO
             }
 
             // Move past opening brace, we are now inside the shader
-            Depth = ReaderDepth.Shader;
+            Position = ParserPosition.InShader;
 
-            while (Depth != ReaderDepth.Root)
+            while (Position != ParserPosition.Outside)
             {
                 // Move forward until hitting some text
                 Index++;
                 PassWhiteSpace();
 
                 // Parse editor level
-                if (Depth == ReaderDepth.Shader)
+                if (Position == ParserPosition.InShader)
                 {
                     // Reached end of current shader block
                     if (CurrentLine == Token.ClosingBrace)
                     {
-                        Depth = ReaderDepth.Root;
+                        Position = ParserPosition.Outside;
                         continue;
                     }
 
                     // Hit a stage
                     if (CurrentLine == Token.OpeningBrace)
                     {
-                        Depth = ReaderDepth.Stage;
+                        Position = ParserPosition.InStage;
                         continue;
                     }
 
@@ -236,12 +249,12 @@ namespace ShaderTools.Utilities.IO
                 }
 
                 // Parse stage
-                else if (Depth == ReaderDepth.Stage)
+                else if (Position == ParserPosition.InStage)
                 {
                     // Reached end of stage
                     if (CurrentLine == Token.ClosingBrace)
                     {
-                        Depth = ReaderDepth.Root;
+                        Position = ParserPosition.Outside;
                         break;
                     }
                 }
@@ -307,7 +320,7 @@ namespace ShaderTools.Utilities.IO
                     return new Cull(result);
                 }
                 else
-                { 
+                {
                     Logger.Warn($"Unknown cull value '{CurrentLine}'", Index, Path);
                     return null;
                 }

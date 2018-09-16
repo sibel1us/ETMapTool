@@ -43,6 +43,9 @@ namespace ShaderTools
         public const string q3map_sun = "q3map_sun";
         public const string q3map_surfacelight = "q3map_surfacelight";
         public const string q3map_lightimage = "q3map_lightimage";
+        public const string q3map_cloneshader = "q3map_cloneshader";
+        public const string q3map_invert = "q3map_invert";
+        public const string q3map_vertexscale = "q3map_vertexscale";
         #endregion Compiler Directives
 
         #region Editor Directives
@@ -54,6 +57,8 @@ namespace ShaderTools
         public const string qer_nocarve = "qer_noCarve";
         public const string qer_trans = "qer_trans";
         #endregion Editor Directives
+
+        public const string animMap = "animMap";
 
         #region General Directives
         public const string polygonOffset = "polygonOffset";

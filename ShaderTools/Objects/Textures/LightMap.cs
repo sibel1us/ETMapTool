@@ -12,7 +12,7 @@ namespace ShaderTools.Objects.Textures
     /// Is always "$lightmap"
     /// </summary>
     [ClassDisplay(Name = "Lightmap", Description = "Renders the q3map2-compiled lightmap of the surface.")]
-    public class LightMap : ITexture
+    public class Lightmap : ITexture
     {   
         // TODO: warning about no lightmap stage when surfaceparm nolightmap is missing
         // TODO: must be used with rgbGen identity!

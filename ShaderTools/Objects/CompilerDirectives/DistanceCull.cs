@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Objects.GeneralDirectives
+namespace ShaderTools.Objects.CompilerDirectives
 {
-    public class DistanceCull : IGeneralDirective
+    public class DistanceCull : ICompilerDirective
     {
         public double OpaqueDistance { get; set; }
         public double TransparentDistance { get; set; }

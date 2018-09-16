@@ -42,12 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\CompilerDirectives\CloneShader.cs" />
+    <Compile Include="Objects\CompilerDirectives\Invert.cs" />
+    <Compile Include="Objects\CompilerDirectives\LightImage.cs" />
     <Compile Include="Objects\CompilerDirectives\TessSize.cs" />
+    <Compile Include="Objects\CompilerDirectives\TextureSize.cs" />
+    <Compile Include="Objects\CompilerDirectives\VertexScale.cs" />
+    <Compile Include="Objects\EditorDirectives\EditorAlphaFunc.cs" />
+    <Compile Include="Objects\ShaderReference.cs" />
     <Compile Include="Utilities\Exceptions\ShaderFileStructureException.cs" />
     <Compile Include="Utilities\Exceptions\ShaderNameException.cs" />
     <Compile Include="Objects\ICompilerDirective.cs" />
-    <Compile Include="Objects\GeneralDirectives\Cull.cs" />
-    <Compile Include="Objects\GeneralDirectives\DistanceCull.cs" />
+    <Compile Include="Objects\CompilerDirectives\Cull.cs" />
+    <Compile Include="Objects\CompilerDirectives\DistanceCull.cs" />
     <Compile Include="Objects\EditorDirectives\EditorImage.cs" />
     <Compile Include="Objects\EditorDirectives\NoCarve.cs" />
     <Compile Include="Objects\EditorDirectives\Transparency.cs" />
@@ -70,15 +77,15 @@
     <Compile Include="Utilities\Helpers\SurfaceparmHelper.cs" />
     <Compile Include="Utilities\Helpers\TokenHelper.cs" />
     <Compile Include="Utilities\IO\FileUtil.cs" />
-    <Compile Include="Utilities\IO\ShaderReader.cs" />
+    <Compile Include="Utilities\IO\ShaderParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\ShaderValidator.cs" />
-    <Compile Include="Objects\GeneralDirectives\DeformVertexes.cs" />
+    <Compile Include="Utilities\Validation\ShaderValidator.cs" />
+    <Compile Include="Objects\CompilerDirectives\DeformVertexes.cs" />
     <Compile Include="Objects\IEditorDirective.cs" />
     <Compile Include="Objects\GeneralDirectives\FogParms.cs" />
     <Compile Include="Objects\IGeneralDirective.cs" />
@@ -97,7 +104,7 @@
     <Compile Include="Objects\Textures\Texture.cs" />
     <Compile Include="Objects\GeneralDirectives\ImpliticMap.cs" />
     <Compile Include="Objects\ITexture.cs" />
-    <Compile Include="Objects\Textures\LightMap.cs" />
+    <Compile Include="Objects\Textures\Lightmap.cs" />
     <Compile Include="Objects\Textures\WhiteImage.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Objects\Waveform.cs" />

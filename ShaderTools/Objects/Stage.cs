@@ -15,7 +15,7 @@ namespace ShaderTools.Objects
         /// <summary>
         /// 
         /// </summary>
-        public ITexture Texture { get; set; }
+        public ITexture Map { get; set; }
 
         /// <summary>
         /// 
@@ -25,32 +25,32 @@ namespace ShaderTools.Objects
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="texture"></param>
-        public Stage(ITexture texture)
+        /// <param name="map"></param>
+        public Stage(ITexture map)
         {
-            this.Texture = texture;
+            this.Map = map;
             this.Directives = new List<IStageDirective>();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="texture"></param>
+        /// <param name="map"></param>
         /// <param name="directives"></param>
-        public Stage(ITexture texture, IEnumerable<IStageDirective> directives)
+        public Stage(ITexture map, IEnumerable<IStageDirective> directives)
         {
-            this.Texture = texture;
+            this.Map = map;
             this.Directives = directives.ToList();
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="texture"></param>
+        /// <param name="map"></param>
         /// <param name="directives"></param>
-        public Stage(ITexture texture, params IStageDirective[] directives)
+        public Stage(ITexture map, params IStageDirective[] directives)
         {
-            this.Texture = texture;
+            this.Map = map;
             this.Directives = directives.ToList();
         }
 
@@ -60,7 +60,7 @@ namespace ShaderTools.Objects
         /// <returns></returns>
         public static Stage LightmapStage()
         {   // TODO: rgbGen identity
-            return new Stage(new LightMap(), null);
+            return new Stage(new Lightmap(), null);
         }
     }
 }

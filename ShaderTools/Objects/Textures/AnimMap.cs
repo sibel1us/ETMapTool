@@ -10,7 +10,7 @@ using ShaderTools.Utilities.Attributes;
 namespace ShaderTools.Objects.Textures
 {
     [ClassDisplay(Name = "AnimMap", Description = "")]
-    public class AnimMap : ITexture
+    public class AnimMap : ITexture, IValidatableObject
     {
         /// <summary>
         /// Repeats per second.
@@ -22,6 +22,7 @@ namespace ShaderTools.Objects.Textures
         /// </summary>
         [MinLength(1)]
         [MaxLength(8)]
+        [Display(Name = "Frames")]
         public List<Texture> Images { get; set; }
 
         /// <summary>
@@ -40,6 +41,18 @@ namespace ShaderTools.Objects.Textures
             }
 
             return sb.ToString();
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Images.Count < 1 || Images.Count > 8)
+            {
+                yield return new ValidationResult($"{Token.animMap} requires 1 to 8 frame(s).");
+            }
+            if (Frequency < 1)
+            {
+
+            }
         }
     }
 }

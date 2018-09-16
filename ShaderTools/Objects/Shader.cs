@@ -1,13 +1,16 @@
-﻿using ShaderTools.Utilities.Exceptions;
+﻿using ShaderTools.Objects.CompilerDirectives;
 using ShaderTools.Objects.GeneralDirectives;
 using ShaderTools.Objects.StageDirectives;
+using ShaderTools.Objects.Textures;
+using ShaderTools.Utilities;
+using ShaderTools.Utilities.Exceptions;
+using ShaderTools.Utilities.Validation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShaderTools.Utilities;
 
 namespace ShaderTools.Objects
 {
@@ -18,6 +21,19 @@ namespace ShaderTools.Objects
         public List<IGeneralDirective> GeneralDirectives { get; set; }
         public HashSet<Surfaceparms> Surfparms { get; set; }
         public List<Stage> Stages { get; set; }
+
+        /// <summary>
+        /// Is true if the shader has a <see cref="Lightmap"/>-stage with <see cref="RGBGen"/> with <see cref="RGBGenType.identity"/>.
+        /// </summary>
+        public bool HasLightmapStage
+        {
+            get
+            {
+                return Stages.Any(stage
+                    => stage.Map is Lightmap
+                    && stage.Directives.Any(d => (d as RGBGen)?.Type == RGBGenType.identity));
+            }
+        }
 
         /// <summary>
         /// Initialize a new shader with a known game folder.

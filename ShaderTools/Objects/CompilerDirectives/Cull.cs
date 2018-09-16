@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShaderTools.Objects.GeneralDirectives
+namespace ShaderTools.Objects.CompilerDirectives
 {
     [Format(Token.cull, "face")]
     [ClassDisplay(Name = "Cull", Description = "Determines which sides of the surface are rendered.")]
-    public class Cull : IGeneralDirective
+    public class Cull : ICompilerDirective
     {
         public CullValue Value { get; set; }
 
@@ -28,14 +28,15 @@ namespace ShaderTools.Objects.GeneralDirectives
     {
         [Display(Name = "Back", Description = "Default value, texture is only rendered on the outside.")]
         back = 0,
+        backside = back,
+        backsided = back,
 
         [Display(Name = "Front", Description = "Inverted, texture is rendered on the inside only.")]
         front,
 
         [Display(Name = "None", Description = "Texture is rendered on both sides, useful for grates, water, energy fields, etc.")]
         none,
-
-        [Display(Name = "Disable", Description = "Texture is rendered on both sides, useful for grates, water, energy fields, etc.")]
-        disable
+        disable = none,
+        twosided = none,
     }
 }
