@@ -18,23 +18,37 @@ namespace ShaderTools.Objects.CompilerDirectives
     }
 
     /// <summary>
+    /// What is this? tr_shader.c line 1094
+    /// </summary>
+    [Deprecated]
+    public class DeformVertexesText : IDeformVertexes { }
+
+    /// <summary>
+    /// What is this? tr_shader.c line 1084
+    /// </summary>
+    public class DeformVertexesProjectionShadow : IDeformVertexes { }
+
+    /// <summary>
     /// Normal autosprite.
     /// </summary>
-    [ClassDisplay(Name = "AutoSprite", Description = "A sprite, always rendered to player as if looked at from a right angle. Must be used on a square brush face.")]
+    [ClassDisplay(Name = "AutoSprite", Description = "Always rendered to player as if looked at from a right angle. Must be used on a square brush face.")]
+    [Format(Token.deformVertexes + " " + Token.autosprite)]
     public class DeformVertexesAutosprite : IDeformVertexes { }
 
     /// <summary>
     /// Pillar autosprite.
     /// </summary>
     [ClassDisplay(Name = "AutoSprite 2", Description = "A sprite, the longest axis of the face is always rendered as if looked at from a right angle.")]
+    [Format(Token.deformVertexes + " " + Token.autosprite2)]
     public class DeformVertexesAutosprite2 : IDeformVertexes { }
 
     /// <summary>
     /// 
     /// </summary>
+    [Format(Token.deformVertexes + " " + Token.wave, "division", "waveform")]
     public class DeformVertexesWave : IDeformVertexes
     {
-        public int Division { get; set; }
+        public int Spread { get; set; }
         public Waveform Waveform { get; set; }
     }
 
@@ -43,10 +57,8 @@ namespace ShaderTools.Objects.CompilerDirectives
     /// </summary>
     public struct DeformVertexesNormal : IDeformVertexes
     {
-        public int Division { get; set; }
-        public double Base { get; set; }
-        public double Amplitude { get; set; }
         public double Frequency { get; set; }
+        public double Amplitude { get; set; }
     }
 
     /// <summary>
@@ -54,9 +66,23 @@ namespace ShaderTools.Objects.CompilerDirectives
     /// </summary>
     public class DeformVertexesBulge : IDeformVertexes
     {
-        public double S { get; set; }
-        public double T { get; set; }
+        [Display(Name = "Bulge Width", Description = "Displacement on first axis (units)")]
+        public double Width { get; set; }
+
+        [Display(Name = "Bulge Height", Description = "Displacement on second axis (units)")]
+        public double Height { get; set; }
+
+        [Display(Name = "Speed", Description = "Seconds per cycle")]
         public double Speed { get; set; }
+
+        /// <summary>
+        /// deformVertexes bulge 7 5.5 0.5
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return $"{Token.deformVertexes} {Token.bulge} {Width.ToStr()} {Height.ToStr()} {Speed.ToStr()}";
+        }
     }
 
     /// <summary>

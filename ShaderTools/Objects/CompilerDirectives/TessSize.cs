@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ShaderTools.Objects.CompilerDirectives
 {
     [ClassDisplay(Name = "Tess Size", Description = "")]
-    public class TessSize : IStageDirective
+    public class TessSize : ICompilerDirective
     {
         [Display(Name = "Value")]
         public int Value { get; set; }

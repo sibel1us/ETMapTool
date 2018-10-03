@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace ShaderTools
         public const string surfaceparm = "surfaceparm";
         public const string q3map = "q3map_";
         public const string tessSize = "tessSize";
+        public const string q3map_tessSize = "q3map_tessSize";
         public const string q3map_backshader = "q3map_backshader";
         public const string q3map_globaltexture = "q3map_globaltexture";
         public const string q3map_sun = "q3map_sun";
@@ -46,6 +48,7 @@ namespace ShaderTools
         public const string q3map_cloneshader = "q3map_cloneshader";
         public const string q3map_invert = "q3map_invert";
         public const string q3map_vertexscale = "q3map_vertexscale";
+        public const string q3map_texturesize = "q3map_texturesize";
         #endregion Compiler Directives
 
         #region Editor Directives
@@ -58,15 +61,20 @@ namespace ShaderTools
         public const string qer_trans = "qer_trans";
         #endregion Editor Directives
 
-        public const string animMap = "animMap";
-
         #region General Directives
+        public const string deformVertexes = "deformVertexes";
+        public const string autosprite = "autosprite";
+        public const string autosprite2 = "autosprite2";
+        public const string wave = "wave";
+        public const string normal = "normal";
+        public const string bulge = "bulge";
+        public const string move = "move";
+
         public const string polygonOffset = "polygonOffset";
         public const string lightgridAmbientMultiplier = "lightgridmulamb";
         public const string lightgridDirectionalMultiplier = "lightgridmuldir";
         public const string entityMergable = "entityMergable";
         public const string portal = "portal";
-        public const string deformVertexes = "deformVertexes";
         public const string nofog = "nofog";
         public const string cull = "cull";
         public const string distancecull = "distancecull";
@@ -87,7 +95,22 @@ namespace ShaderTools
         #endregion General Directives
 
         #region Stage Directives
+        public const string map = "map";
+        public const string animMap = "animMap";
+        public const string clampMap = "clampMap";
+        public const string videoMap = "videoMap";
+
+        public const string blendFunc = "blendFunc";
+        public const string add = "add";
+        public const string filter = "filter";
+        public const string blend = "blend";
+
         public const string rgbGen = "rgbGen";
+        public const string tcMod = "tcMod";
+        public const string map_lightmap = "$lightmap";
+        public const string map_dlight = "$dlight";
+        public const string map_whiteimage = "$whiteimage";
+        public const string map_whiteimage2 = "*white";
         #endregion Stage Directives
 
         #region Miscellaneous

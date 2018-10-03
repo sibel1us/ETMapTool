@@ -61,6 +61,9 @@ namespace ShaderTools.Objects
         Sawtooth,
 
         [Display(Name = "Inverse Sawtooth", Description = "Inverted sawtooth, values descend from the upper extreme instead.")]
-        InverseSawtooth
+        InverseSawtooth,
+
+        [Display(Name = "Noise", Description = "random")]
+        Noise
     }
 }

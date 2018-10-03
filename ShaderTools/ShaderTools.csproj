@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneralExtensions.cs" />
     <Compile Include="Objects\CompilerDirectives\CloneShader.cs" />
     <Compile Include="Objects\CompilerDirectives\Invert.cs" />
     <Compile Include="Objects\CompilerDirectives\LightImage.cs" />
@@ -50,6 +51,10 @@
     <Compile Include="Objects\CompilerDirectives\VertexScale.cs" />
     <Compile Include="Objects\EditorDirectives\EditorAlphaFunc.cs" />
     <Compile Include="Objects\ShaderReference.cs" />
+    <Compile Include="Objects\StageDirectives\BlendFunc.cs" />
+    <Compile Include="Objects\StageDirectives\DepthWrite.cs" />
+    <Compile Include="Objects\StageDirectives\TcMod.cs" />
+    <Compile Include="Utilities\Attributes\DeprecatedAttribute.cs" />
     <Compile Include="Utilities\Exceptions\ShaderFileStructureException.cs" />
     <Compile Include="Utilities\Exceptions\ShaderNameException.cs" />
     <Compile Include="Objects\ICompilerDirective.cs" />
