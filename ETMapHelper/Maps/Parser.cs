@@ -137,11 +137,7 @@ namespace ETMapHelper.Maps
             var primitiveCount = split.Length / 7;
 
             // Fill the component with new primitives
-            PatchComponent component = new PatchComponent
-            {
-                Primitives = new List<PatchPrimitive>(Enumerable.Repeat(new PatchPrimitive(), primitiveCount))
-            };
-
+            PatchComponent component = new PatchComponent(primitiveCount);
 
             for (int i = 0; i < split.Length; i++)
             {
@@ -151,15 +147,20 @@ namespace ETMapHelper.Maps
                 switch (i % 7)
                 {
                     case 1:
-                        component.Primitives[n].X = ParseDouble(split[i]); break;
+                        component.Primitives[n].X = ParseDouble(split[i]);
+                        break;
                     case 2:
-                        component.Primitives[n].Y = ParseDouble(split[i]); break;
+                        component.Primitives[n].Y = ParseDouble(split[i]);
+                        break;
                     case 3:
-                        component.Primitives[n].Z = ParseDouble(split[i]); break;
+                        component.Primitives[n].Z = ParseDouble(split[i]);
+                        break;
                     case 4:
-                        component.Primitives[n].Value1 = ParseDouble(split[i]); break;
+                        component.Primitives[n].Value1 = ParseDouble(split[i]);
+                        break;
                     case 5:
-                        component.Primitives[n].Value2 = ParseDouble(split[i]); break;
+                        component.Primitives[n].Value2 = ParseDouble(split[i]);
+                        break;
                 }
             }
 

@@ -11,6 +11,18 @@ namespace ETMapHelper.Maps
     {
         public List<PatchPrimitive> Primitives { get; set; }
 
+        public PatchComponent() { }
+
+        public PatchComponent(int primitives)
+        {
+            Primitives = new List<PatchPrimitive>(primitives);
+
+            for (int i = 0; i < primitives; i++)
+            {
+                Primitives.Add(new PatchPrimitive());
+            }
+        }
+
         public override string ToString()
         {
             var sb = new StringBuilder();

@@ -9,7 +9,7 @@ namespace ETMapHelper.Maps
 {
     public class PatchPrimitive
     {
-        private readonly NumberFormatInfo nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
+        private static readonly NumberFormatInfo nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
 
         public double X { get; set; }
         public double Y { get; set; }
