@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Vertex = System.Tuple<ETMapHelper.Maps.Point, ETMapHelper.Maps.Point, ETMapHelper.Maps.Point>;
+using System.Windows.Media.Media3D;
 
 namespace ETMapHelper.Maps
 {
@@ -25,6 +26,21 @@ namespace ETMapHelper.Maps
         public double ScaleX { get; set; }
         public double ScaleY { get; set; }
         public bool Detail { get; set; }
+
+        public double Angle
+        {
+            get
+            {
+                Vector3D a = new Vector3D(Vertex.Item1.X, Vertex.Item1.Y, Vertex.Item1.Z);
+                Vector3D b = new Vector3D(Vertex.Item2.X, Vertex.Item2.Y, Vertex.Item2.Z);
+                Vector3D c = new Vector3D(Vertex.Item3.X, Vertex.Item3.Y, Vertex.Item3.Z);
+
+                var result = Vector3D.CrossProduct(b - a, c - a);
+                return Vector3D.AngleBetween(result, new Vector3D(0, 0, -1));
+            }
+        }
+
+        public bool Steep => Math.Acos(0.7) > this.Angle;
 
         public override string ToString()
         {
