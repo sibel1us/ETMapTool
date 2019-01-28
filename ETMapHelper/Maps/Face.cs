@@ -27,6 +27,11 @@ namespace ETMapHelper.Maps
         public double ScaleY { get; set; }
         public bool Detail { get; set; }
 
+        /// <summary>
+        /// Degrees required for a brush face to be angle slick.
+        /// </summary>
+        public static double SteepAngle => (180 / Math.PI) * Math.Acos(0.7);
+
         public double Angle
         {
             get
@@ -40,7 +45,7 @@ namespace ETMapHelper.Maps
             }
         }
 
-        public bool Steep => Math.Acos(0.7) > this.Angle;
+        public bool Steep => this.Angle > SteepAngle;
 
         public override string ToString()
         {
